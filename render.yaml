@@ -1,0 +1,33 @@
+# Render Blueprint for Harborline Bank (practice banking simulator).
+#
+# To deploy: in the Render dashboard choose New > Blueprint and connect the
+# GitHub repo. Render reads this file, builds the React app, and runs the
+# Express server (which serves the built site and the API together).
+#
+# Note on data: the free plan has an ephemeral filesystem, so the SQLite
+# database (accounts, balances, activity) resets on each deploy or restart —
+# fine for a live demo. For durable data, switch `plan` to `starter` and add a
+# persistent disk (see the commented block below), then point HARBORLINE_DB at
+# the mounted path.
+services:
+  - type: web
+    name: harborline-bank
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "24.19.0"
+      - key: HARBORLINE_DB
+        value: /tmp/harborline.sqlite
+    # To persist data, use a paid instance type and a disk instead of /tmp:
+    # plan: starter
+    # disk:
+    #   name: harborline-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # and set HARBORLINE_DB to /var/data/harborline.sqlite

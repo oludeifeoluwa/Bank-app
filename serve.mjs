@@ -1,8 +1,10 @@
 import { spawn } from 'node:child_process';
 import { createApp } from './server.mjs';
 
-const host = '127.0.0.1';
-const port = Number(process.env.HARBORLINE_PORT || 43824);
+// On a hosting platform (Render, etc.) PORT is provided and the app must bind
+// to 0.0.0.0; locally it stays on 127.0.0.1 for the usual dev experience.
+const host = process.env.HOST || (process.env.PORT ? '0.0.0.0' : '127.0.0.1');
+const port = Number(process.env.PORT || process.env.HARBORLINE_PORT || 43824);
 const apiOnly = process.argv.includes('--api-only');
 const app = await createApp({ staticFiles: !apiOnly });
 
