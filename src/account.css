@@ -1,0 +1,62 @@
+.bank{min-height:calc(100dvh - 32px);background:#f3f7fb}
+.bank .header-main{border-color:#e5edf6}
+.bank-nav{min-height:46px}
+.bank-nav button{min-height:44px}
+.bank .avatar{width:32px;height:32px;border-radius:50%;background:#e0efff;color:#0758a8;display:grid;place-items:center;font-weight:750;font-size:.73rem}
+.small-button{min-height:32px;padding:6px 11px;font-size:.77rem}
+.bank-main{padding-block:26px 48px}
+.page-heading{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:19px}
+.page-heading h1{font-size:clamp(1.75rem,3.5vw,2.55rem);letter-spacing:-.055em;line-height:1.15;margin:6px 0}
+.page-heading .muted{font-size:.86rem}
+.date-chip{background:#fff;border:1px solid var(--line);border-radius:7px;padding:6px 9px;color:var(--muted);font-size:.74rem;white-space:nowrap}
+.bank-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:15px;margin-bottom:15px}
+.balance-card,.panel{border-radius:13px;border:1px solid var(--line);background:#fff;min-width:0}
+.balance-card{overflow:hidden;position:relative;border-color:#155dac;background:linear-gradient(120deg,#0e3f77,#0863bc);color:#fff;padding:19px 22px}
+.balance-card:after{content:"";position:absolute;inset:-80px -58px auto auto;width:310px;height:310px;border-radius:50%;border:1px solid #add7ff4a;box-shadow:0 0 0 16px #a8d9ff12,0 0 0 32px #a8d9ff12,0 0 0 48px #a8d9ff12;pointer-events:none}
+.balance-top{display:flex;align-items:center;gap:8px;position:relative;z-index:1}
+.balance-top h2,.panel h2{font-size:1.01rem;letter-spacing:-.018em}
+.balance-top p,.balance-label{font-size:.76rem;color:#dcefff}
+.balance-top p{margin-top:2px}
+.balance-icon,.transaction-icon{display:grid;place-items:center;flex:none;width:35px;height:35px;border-radius:8px;background:#eaf4ff;color:#0f5da9}
+.balance-icon{background:#ffffff25;color:#fff}
+.balance-icon svg,.transaction-icon svg{width:17px;height:17px}
+.balance-tag{font-size:.66rem;margin-left:auto;border-radius:30px;border:1px solid #b0dfff75;padding:5px 7px}
+.balance-label{margin-top:19px}
+.balance-number{font-variant-numeric:tabular-nums;font-size:clamp(2rem,4vw,3.15rem);font-weight:690;line-height:1.08;letter-spacing:-.055em;margin-top:3px}
+.quick-panel{padding:15px 17px}
+.quick-panel button{width:100%;display:flex;align-items:center;gap:8px;text-align:left;border:0;background:none;padding:9px 0;color:var(--navy);font-size:.84rem}
+.quick-panel button:hover strong{color:var(--blue);text-decoration:underline}
+.quick-panel button+button{border-top:1px solid #e9eff6}
+.quick-panel button>svg{width:14px;height:14px;margin-left:auto;color:var(--blue)}
+.quick-panel small,.source-account small{display:block;color:var(--muted);font-size:.72rem;margin-top:1px}
+.panel-heading{padding:13px 17px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.panel-heading .muted{margin-top:2px;font-size:.73rem}
+.table-scroll{overflow:auto}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:.82rem;white-space:nowrap}
+th{font-size:.69rem;letter-spacing:.04em;text-transform:uppercase;color:#53677c;background:#f7faff}
+th,td{padding:8px 13px;border-top:1px solid #e7eef6}
+th:first-child,td:first-child{padding-left:17px}
+th:last-child,td:last-child{text-align:right;padding-right:17px}
+td:last-child{font-weight:740;font-variant-numeric:tabular-nums}
+td:nth-child(2),td:nth-child(3){color:var(--muted)}
+.credit{color:#137054}
+.transaction{display:flex;align-items:center;gap:7px}
+.transaction .transaction-icon{width:27px;height:27px;border-radius:6px}
+.transaction .transaction-icon svg{width:13px;height:13px}
+.transaction-icon.credit,.receipt-check{background:#e1f6eb;color:#137054}
+.empty{text-align:center!important;padding:20px!important;color:var(--muted)}
+.filters{display:flex;gap:12px;align-items:end;padding:13px 17px}
+.filters>div:first-child{width:min(300px,60%)}
+.transfer-form .field{margin-top:10px}
+.transfer-form .error{margin-top:7px}
+.transfer-form .dialog-actions{margin-top:13px}
+.source-account{display:flex;align-items:center;gap:8px;padding:9px;background:#edf5ff;border:1px solid #d9e9f9;border-radius:8px;font-size:.81rem}
+.source-account>strong:last-child{margin-left:auto;white-space:nowrap}
+.summary{border:1px solid var(--line);background:#f7faff;padding:2px 12px;border-radius:8px}
+.summary div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:.84rem}
+.summary div+div{border-top:1px solid var(--line)}
+.summary dt{color:var(--muted)}
+.summary dd{font-weight:740;text-align:right}
+.receipt-check{width:39px;height:39px;display:grid;place-items:center;border-radius:50%}
+@media(max-width:700px){.bank-grid{grid-template-columns:1fr}.balance-tag{font-size:.62rem}}
+@media(max-width:470px){.date-chip{display:none}.bank-main{padding-top:19px}th:nth-child(3),td:nth-child(3){display:none}th,td{padding-inline:5px}th:first-child,td:first-child{padding-left:8px}th:last-child,td:last-child{padding-right:8px}table{font-size:.72rem}.transaction .transaction-icon{display:none}.filters{padding-inline:8px;gap:6px}.panel-heading{padding-inline:9px}}

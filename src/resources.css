@@ -1,0 +1,57 @@
+.resource-directory { display: grid; gap: 13px; }
+.resource-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+.resource-toolbar .field { width: min(100%, 310px); }
+.resource-toolbar .control, .resource-inline .control, .planner-fields .control { display: block; width: 100%; margin-top: 5px; }
+.resource-toolbar p { font-size: .91rem; }
+.resource-tabs { display: flex; flex-wrap: wrap; gap: 7px; }
+.resource-tabs .button { min-height: 38px; padding: 7px 11px; }
+.resource-tabs .button[aria-pressed=true] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.resource-count { font-size: .8rem; }
+.resource-directory-groups, .resource-tool-grid, .resource-editorial-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 14px; }
+.resource-group { min-width: 0; overflow: hidden; }
+.resource-group h3, .resource-group h2 { padding: 15px 18px 10px; font-size: 1.03rem; }
+.resource-link { display: grid; grid-template-columns: 33px minmax(0, 1fr) 16px; gap: 10px; align-items: center; padding: 10px 16px; color: var(--navy); text-decoration: none; border-top: 1px solid #e7edf5; }
+.resource-link:hover { background: #f2f8ff; color: #075cbd; text-decoration: none; }
+.resource-link:focus-visible { outline-offset: -3px; }
+.resource-link strong { font-size: .88rem; }
+.resource-link small { display: block; font-size: .78rem; color: var(--muted); line-height: 1.45; margin-top: 3px; }
+.resource-link > svg { width: 15px; height: 15px; color: var(--blue); }
+.resource-link .transaction-icon { width: 33px; height: 33px; }
+.resource-tool-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.resource-tool { display: grid; align-content: start; gap: 11px; padding: clamp(15px, 3vw, 24px); }
+.route-sections .resource-tool h2 { margin: 0; font-size: 1.18rem; }
+.resource-tool h3 { font-size: 1rem; }
+.resource-tool .muted, .resource-result p { font-size: .88rem; line-height: 1.57; }
+.resource-tool > .button, .resource-tool > .link { justify-self: start; }
+.resource-inline { display: flex; gap: 10px; align-items: end; }
+.resource-inline .field { width: min(100%, 340px); }
+.resource-inline .button { flex: none; }
+.resource-result { background: #f2f7ff; border-color: #cfdef0; }
+.resource-kicker { font-weight: 730; font-size: .76rem; color: #155d9e; }
+.resource-result ol { margin: 0; padding-left: 1.16rem; font-size: .87rem; color: var(--navy); line-height: 1.55; }
+.resource-result li + li { margin-top: 5px; }
+.resource-estimate { font-size: clamp(1.6rem, 5vw, 2.45rem); letter-spacing: -.042em; overflow-wrap: anywhere; }
+.payment-options { border: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.payment-options label { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: .85rem; }
+.payment-options label:has(input:checked) { background: #eaf4ff; border-color: #98bbde; }
+.planner-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.resource-editorial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+.resource-community-note { margin-top: 12px; font-size: .86rem; }
+.site-map-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px 25px; }
+.site-map-grid section { border-top: 1px solid var(--line); padding-block: 8px 12px; }
+.route-sections .site-map-grid h2 { font-size: 1.14rem; margin-bottom: 8px; }
+.site-map-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
+.site-map-grid li a { color: #125f9e; font-size: .88rem; text-underline-offset: .16em; }
+.route-sections > a.button { justify-self: start; }
+.footer-note { flex-wrap: wrap; }
+
+@media (max-width: 760px) {
+  .resource-editorial-grid { grid-template-columns: 1fr; }
+  .site-map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 590px) {
+  .resource-tool-grid, .resource-directory-groups { grid-template-columns: 1fr; }
+  .resource-toolbar { align-items: start; flex-direction: column; }
+  .resource-inline { align-items: start; flex-direction: column; }
+  .resource-toolbar .field, .resource-inline .field { width: 100%; }
+}
