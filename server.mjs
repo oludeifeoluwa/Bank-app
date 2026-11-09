@@ -170,16 +170,28 @@ export async function createApp({
 
   const app = express();
   app.disable('x-powered-by');
+  app.set('trust proxy', 1);
+  // Restrict which Host headers are served. Localhost for local dev, plus the
+  // deployment host (Render sets RENDER_EXTERNAL_HOSTNAME) and any custom domain
+  // supplied via ALLOWED_HOST. This keeps the DNS-rebind guard while allowing the
+  // app to be hosted.
+  const allowedHosts = new Set(['127.0.0.1', 'localhost']);
+  for (const name of ['RENDER_EXTERNAL_HOSTNAME', 'ALLOWED_HOST']) {
+    if (process.env[name]) allowedHosts.add(process.env[name].toLowerCase());
+  }
   app.use((req, res, next) => {
-    if (!/^(127\.0\.0\.1|localhost)(:\d+)?$/i.test(req.get('host') || '')) return res.sendStatus(403);
+    const host = (req.get('host') || '').toLowerCase().replace(/:\d+$/, '');
+    if (!allowedHosts.has(host) && !host.endsWith('.onrender.com')) return res.sendStatus(403);
     res.set('X-Content-Type-Options', 'nosniff');
     next();
   });
   app.use('/api', (req, res, next) => {
     res.set('Cache-Control', 'no-store');
     if (req.method === 'POST') {
+      const host = req.get('host');
       const origin = req.get('origin');
-      if ((origin && origin !== 'http://' + req.get('host')) || req.get('sec-fetch-site') === 'cross-site') {
+      const originHost = origin ? origin.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
+      if ((origin && originHost !== host) || req.get('sec-fetch-site') === 'cross-site') {
         return next(problem(403, 'Open Northpoint directly to use your demo account.'));
       }
       if (!req.is('application/json')) return next(problem(415, 'Send a JSON request.'));
