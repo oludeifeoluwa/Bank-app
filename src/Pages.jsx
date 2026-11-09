@@ -8,6 +8,23 @@ import { CommercialSnapshot, DemoBranchFinder, DemoIssueReport, MerchantSteps } 
 import { BusinessPhoto, PhotoFeatures } from './PhotoFeatures.jsx';
 import { CashPlanner, EditorialResources, IndustryDirectory, PaymentFinder, PublicSiteMap, ResourceDirectory, SupportFinder } from './PublicResources.jsx';
 import { WaveLines } from './DigitalShortcuts.jsx';
+import checkingPhoto from './assets/checking-mobile.jpg';
+import savingsPhoto from './assets/savings-planning.jpg';
+import homePhoto from './assets/home-keys.jpg';
+import autoPhoto from './assets/auto-keys.jpg';
+import investingPhoto from './assets/investing-advisor.jpg';
+import ownerPhoto from './assets/business-owner.jpg';
+
+// Lifestyle photos shown in the hero of each personal product hub (and its
+// child pages), so the public site reads like a real bank rather than icons.
+const routePhotos = {
+  checking: { src: checkingPhoto, alt: 'A person checking their account on a phone while out in the city' },
+  savings: { src: savingsPhoto, alt: 'A couple reviewing their savings together at home' },
+  home: { src: homePhoto, alt: 'A couple holding the keys to their new home' },
+  auto: { src: autoPhoto, alt: 'A person holding the keys to their new car' },
+  investing: { src: investingPhoto, alt: 'An advisor reviewing plans with two smiling clients' },
+  business: { src: ownerPhoto, alt: 'Two small-business owners smiling behind their café counter' },
+};
 
 function PageCard({ item }) {
   return <Link page={item.key} className="route-card"><span className="route-card-icon"><Icon name={item.icon} /></span><h3>{item.label}</h3><p>{item.description}</p><Icon name="arrow" className="route-card-arrow" /></Link>;
@@ -117,7 +134,11 @@ export function ProductPage({ page, signedIn }) {
           {page.key === 'commercial' && <Link page="cash-planner" className="button button-outline">Plan a cash position</Link>}
         </div>
       </div>
-      {["merchant", "knowledge"].includes(page.key) ? <div className="route-photo"><BusinessPhoto page={page.key} eager /></div> : <PageArt name={hub.key} section={page.section} />}
+      {["merchant", "knowledge"].includes(page.key)
+        ? <div className="route-photo"><BusinessPhoto page={page.key} eager /></div>
+        : routePhotos[hub.key]
+          ? <div className="route-photo route-photo--hub"><img src={routePhotos[hub.key].src} alt={routePhotos[hub.key].alt} width="1280" height="854" loading="eager" decoding="async" /></div>
+          : <PageArt name={hub.key} section={page.section} />}
     </div></section>
     <div className="shell route-sections">
       {page.calculator && <Calculator key={page.key} kind={page.calculator} />}

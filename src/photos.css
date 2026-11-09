@@ -10,6 +10,10 @@
 .photo-feature-copy h2{font-size:clamp(1.65rem,3.25vw,2.7rem);line-height:1.12;letter-spacing:-.045em;margin:6px 0 10px}
 .photo-feature-copy p:not(.eyebrow){color:var(--muted);font-size:clamp(.9rem,1.3vw,1.06rem);line-height:1.58;margin-bottom:16px}
 .route-photo{width:100%;max-width:490px;justify-self:end}
+.route-photo--hub{aspect-ratio:1.5;overflow:hidden;border-radius:14px;background:var(--paper);box-shadow:0 24px 46px -30px rgba(16,43,61,.5)}
+.route-photo--hub img{display:block;width:100%;height:100%;object-fit:cover}
+.photo-features.harbor-home-feature{padding-block:clamp(28px,4.5vw,52px);border-top:1px solid var(--line)}
+.harbor-feature-photo{aspect-ratio:1.5;box-shadow:0 24px 46px -30px rgba(16,43,61,.5)}
 .route-sections>.photo-features{width:100%;padding:0}
 .route-sections>.photo-features .photo-feature:first-child{padding-top:0}
 @media(max-width:700px){

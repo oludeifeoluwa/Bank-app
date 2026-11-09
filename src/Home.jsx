@@ -8,6 +8,7 @@ import { Link } from './Navigation.jsx';
 import { pages, personalNav } from './catalog.js';
 import { DigitalShortcuts, QuickHelp } from './DigitalShortcuts.jsx';
 import personalPhoto from './assets/personal-finances.webp';
+import homeFeaturePhoto from './assets/home-keys.jpg';
 
 function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
   const [remember, setRemember] = useState(() => readSession(storageKeys.remember) === 'yes');
@@ -104,6 +105,20 @@ function Highlights() {
   </section>;
 }
 
+function LifestyleFeature() {
+  return <section className="shell photo-features harbor-home-feature" aria-label="Home ownership">
+    <article className="photo-feature">
+      <div className="business-photo harbor-feature-photo"><img src={homeFeaturePhoto} alt="A happy couple holding the keys to their new home" width="1280" height="854" loading="lazy" decoding="async" /></div>
+      <div className="photo-feature-copy">
+        <p className="eyebrow">Home loans</p>
+        <h2>From first tour to first key</h2>
+        <p>Explore buying or refinancing, estimate a sample monthly payment, and see what fits your plans — all in one place.</p>
+        <Link page="home" className="button button-primary">Explore home loans <Icon name="arrow" /></Link>
+      </div>
+    </article>
+  </section>;
+}
+
 export function Home({ onSignIn }) {
   const [credentials, setCredentials] = useState(false);
   const [signup, setSignup] = useState(false);
@@ -141,6 +156,8 @@ export function Home({ onSignIn }) {
       <Highlights />
 
       <DigitalShortcuts />
+
+      <LifestyleFeature />
 
       <section className="harbor-products" aria-labelledby="products-title">
         <div className="shell">
