@@ -26,7 +26,7 @@ export function WorkspaceShell({ label, user, nav, secondary, onSignOut, childre
   return <div className="bank workspace">
     <a className="skip-link" href="#workspace-content">Skip to dashboard</a>
     <header className="workspace-top">
-      <Link className="brand-link" to="/" aria-label="Harborline Bank account overview"><Brand /></Link>
+      <Link className="brand-link" to="/" aria-label="Northpoint Bank account overview"><Brand /></Link>
       <button ref={menu} className="button button-outline small-button workspace-menu" aria-expanded={menuOpen} aria-controls="workspace-side" onClick={() => setMenuOpen(!menuOpen)}><Icon name="menu" /> Menu</button>
       <span className="workspace-context">Practice environment</span>
       <div className="workspace-profile"><span className="avatar" aria-hidden="true">{user.username.slice(0, 2).toUpperCase()}</span><span className="workspace-profile-name">{user.username}</span><button className="button button-outline small-button" disabled={signingOut} onClick={leave}>{signingOut ? 'Signing out…' : 'Sign out'}</button></div>
@@ -37,7 +37,7 @@ export function WorkspaceShell({ label, user, nav, secondary, onSignOut, childre
           <p>{label}</p>
           {nav.map(item => <WorkspaceLink key={item.label} item={item} onPick={() => setMenuOpen(false)} />)}
         </nav>
-        <nav aria-label="More Harborline tools" className="workspace-nav workspace-secondary">
+        <nav aria-label="More Northpoint tools" className="workspace-nav workspace-secondary">
           {secondary.map(item => <WorkspaceLink key={item.label} item={item} onPick={() => setMenuOpen(false)} />)}
         </nav>
       </aside>

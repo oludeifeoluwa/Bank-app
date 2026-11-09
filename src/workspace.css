@@ -114,7 +114,7 @@
 .skip-link:focus { transform: none; }
 .reference { overflow-wrap: anywhere; }
 .practice-card { width: min(100%, 330px); min-height: 164px; display: grid; align-content: start; grid-template-columns: 1fr auto; gap: 9px; border-radius: 14px; padding: 18px; color: #fff; background: #142e51; }
-.practice-card svg { color: #a9f1cb; }
+.practice-card svg { color: #bcd6f5; }
 .practice-card > span { grid-column: 1 / -1; margin-top: 20px; font-size: 1.15rem; font-weight: 700; }
 .practice-card small { grid-column: 1 / -1; color: #dbeaff; }
 .owner-heading-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: end; flex: 0 0 auto; }

@@ -1,7 +1,7 @@
 import { billers, kindOf, postedDate, sampleChecks, signedAmount, statusOf } from './ledger.js';
 
-export const demoEmail = 'student@harborline.example';
-export const demoPassword = 'Harborline2026!';
+export const demoEmail = 'student@northpoint.example';
+export const demoPassword = 'Northpoint2026!';
 export const startingBalance = 51278900;
 export const storageKeys = { remember: 'harborline.rememberDemoEmail' };
 export const recipients = Object.freeze({

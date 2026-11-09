@@ -96,8 +96,8 @@ h1,h2,h3,.brand{font-family:var(--heading-font)}
    Savings keeps the clean light card (matching checking); the credit card is a
    distinctive dark "premium card". High-specificity selectors are required to
    win over .workspace .dashboard-balance in harborline.css / workspace.css. */
-.dashboard-balance-note{margin:12px 0 0;color:#2f7d53;font-size:.76rem;font-weight:650}
-.workspace .dashboard-balance-savings .dashboard-demo-badge{border-color:#d7dcd2;background:#eef4f0;color:#2f7d53}
+.dashboard-balance-note{margin:12px 0 0;color:#1f66b0;font-size:.76rem;font-weight:650}
+.workspace .dashboard-balance-savings .dashboard-demo-badge{border-color:#d7dcd2;background:#eaf2fb;color:#1f66b0}
 
 .workspace .dashboard-balance.dashboard-balance-credit{background:linear-gradient(120deg,#241a4d 7%,#3a2a74 52%,#5a3fb0);border-color:#3a2a74;color:#fff}
 .workspace .dashboard-balance.dashboard-balance-credit .dashboard-balance-top p,

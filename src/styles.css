@@ -1,6 +1,6 @@
 @import './account.css';
 
-:root{font-family:"Segoe UI",system-ui,sans-serif;color:#152941;background:#fff;font-synthesis:none;--blue:#075cbd;--blue-dark:#064b9c;--navy:#142c48;--muted:#4d6076;--line:#d9e3ed;--mint:#a9f1cb;--shell:min(1360px,calc(100% - 96px))}
+:root{font-family:"Segoe UI",system-ui,sans-serif;color:#152941;background:#fff;font-synthesis:none;--blue:#075cbd;--blue-dark:#064b9c;--navy:#142c48;--muted:#4d6076;--line:#d9e3ed;--mint:#cfe2fb;--shell:min(1360px,calc(100% - 96px))}
 *{box-sizing:border-box}
 body{margin:0;min-width:280px}
 button,input,select{font:inherit}
@@ -13,7 +13,7 @@ svg{flex:none;vertical-align:middle}
 .muted{color:var(--muted)}
 .eyebrow{font-size:.7rem;letter-spacing:.13em;font-weight:750;text-transform:uppercase;color:#14569b}
 .simulator-banner{min-height:32px;padding:6px 14px;display:flex;align-items:center;justify-content:center;gap:8px;background:#eaf4ff;color:#16436d;font-size:.75rem;font-weight:650;text-align:center}
-.simulator-banner span,.hero-meta span{width:7px;height:7px;border-radius:50%;display:inline-block;background:#19a68a;flex:none}
+.simulator-banner span,.hero-meta span{width:7px;height:7px;border-radius:50%;display:inline-block;background:#1f74d6;flex:none}
 .site-header{background:white}
 .header-main{display:flex;align-items:center;min-height:67px;gap:32px;border-bottom:1px solid #eaf0f6}
 .brand{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-size:1.35rem;font-weight:780;letter-spacing:-.048em;color:var(--navy)}
@@ -38,8 +38,8 @@ svg{flex:none;vertical-align:middle}
 .button-primary:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
 .button-outline{background:#fff;color:#0b559e;border-color:#a9c8e8}
 .button-outline:hover{background:#edf6ff}
-.button-mint{background:var(--mint);color:#133d3a}
-.button-mint:hover{background:#d0f8de}
+.button-mint{background:var(--mint);color:#0b3a6b}
+.button-mint:hover{background:#d2e6fb}
 .hero{overflow:hidden;position:relative;color:#fff;background:radial-gradient(ellipse at 44% 30%,#116dc5 0%,#0659b2 43%,#034991 100%)}
 .hero:before,.hero:after{content:"";position:absolute;width:820px;height:820px;border:1px solid #91d4ff30;border-radius:50%;pointer-events:none;left:39%;top:49%;transform:translate(-50%,-50%)}
 .hero:after{width:690px;height:690px}

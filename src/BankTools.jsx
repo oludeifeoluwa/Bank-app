@@ -147,7 +147,7 @@ function Statements({ user, transactions, balance, Transactions }) {
   const summary = [['Opening balance', opening], ['Credits', credits], ['Debits', debits], ['Closing balance', closing]];
 
   function download() {
-    const rows = [['Harborline Bank statement — Practice record', month], ['Account', `Everyday Checking ending in ${user.lastFour}`],
+    const rows = [['Northpoint Bank statement — Practice record', month], ['Account', `Everyday Checking ending in ${user.lastFour}`],
       ...summary.map(([label, cents]) => [label, (cents / 100).toFixed(2)]), [],
       ['Date', 'Description', 'Type', 'Amount (USD)'],
       ...entries.map(entry => [localDate(entry.date), entry.description, entry.type, (entry.amount / 100).toFixed(2)])];

@@ -1,4 +1,4 @@
-# Harborline photography
+# Northpoint photography
 
 These illustrative stock photographs are used under the [Pexels license](https://www.pexels.com/license/).
 

@@ -2,16 +2,16 @@
   --paper: #fff;
   --surface: #fff;
   --ink: #102b3d;
-  --green: #245844;
-  --green-dark: #193f32;
-  --green-light: #e1e9df;
-  --light-on-ink: #c7dbd1;
+  --green: #0b5cab;
+  --green-dark: #084a8c;
+  --green-light: #e4eefb;
+  --light-on-ink: #bcd6f5;
   --navy: var(--ink);
   --blue: var(--green);
   --blue-dark: var(--green-dark);
   --mint: var(--green-light);
-  --muted: #4f605a;
-  --line: #d7dcd2;
+  --muted: #51617a;
+  --line: #d6dee9;
   --display-font: Georgia, 'Times New Roman', serif;
   --shell: min(1280px, calc(100% - clamp(32px, 8vw, 100px)));
   color: var(--ink);
@@ -20,8 +20,8 @@
 }
 
 button, input, select, textarea { font: inherit; }
-:where(a, button, input, select, textarea, summary):focus-visible { outline: 2px solid #33775c; outline-offset: 3px; }
-button:focus-visible, input:focus-visible, select:focus-visible { outline-color: #33775c; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 2px solid #2f6fd0; outline-offset: 3px; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline-color: #2f6fd0; }
 a { text-underline-offset: .18em; }
 .brand { gap: .19em; font: 600 1.53rem/1 var(--display-font); letter-spacing: -.04em; }
 .brand > span:last-child { font-weight: inherit; }
@@ -29,7 +29,7 @@ a { text-underline-offset: .18em; }
 .brand-mark svg { width: 100%; height: 100%; }
 .button { border-radius: 6px; }
 .link, .eyebrow, .field, .control { color: var(--green-dark); }
-.button-outline { color: var(--green-dark); border-color: #a7b8ad; background: var(--surface); }
+.button-outline { color: var(--green-dark); border-color: #aec6e4; background: var(--surface); }
 .button-outline:hover, .icon-button:hover { background: var(--green-light); }
 .control, .login .control { border-color: #adbab1; background: var(--surface); color: var(--ink); }
 .control::placeholder { color: #566861; }
@@ -48,7 +48,7 @@ a { text-underline-offset: .18em; }
 .editorial-menu-button, .bank-mobile-utilities { display: none; }
 .editorial-header :focus-visible, .workspace-top :focus-visible { outline-color: #b8d5c3; }
 .bank-audience-nav { position: relative; z-index: 6; background: var(--surface); color: var(--ink); border-bottom: 1px solid var(--line); }
-.bank-audience-nav :focus-visible { outline-color: #33775c; outline-offset: -2px; }
+.bank-audience-nav :focus-visible { outline-color: #2f6fd0; outline-offset: -2px; }
 .bank-audience-list, .bank-menu-panel ul { list-style: none; padding: 0; }
 .bank-audience-list { position: relative; display: flex; gap: clamp(10px, 2.4vw, 36px); }
 .bank-audience-tab { display: flex; align-items: stretch; border-bottom: 3px solid transparent; }
@@ -157,7 +157,7 @@ a { text-underline-offset: .18em; }
 .route-icon-art svg, .breadcrumbs svg { color: var(--green); }
 .route-card, .calculator-result, .panel, .dialog { background: var(--surface); border-color: var(--line); }
 .route-card { position: relative; color: var(--ink); padding: 16px 30px 16px 16px; text-decoration: none; }
-.route-card:hover { border-color: #a7b8ad; }
+.route-card:hover { border-color: #aec6e4; }
 .route-card:hover h3 { text-decoration: underline; }
 .route-card-arrow { width: 16px; height: 16px; position: absolute; right: 13px; top: 24px; color: var(--green); }
 .route-card-icon, .detail-section li span, .transaction-icon, .dashboard-snapshot-icon { background: var(--green-light); color: var(--green-dark); }
@@ -188,7 +188,7 @@ th, td { border-color: var(--line); }
 .workspace-link:hover { color: var(--ink); background: #e5e9df; }
 .workspace-link[aria-current] { color: var(--green-dark); background: #dce6da; border-color: #c7d5c8; }
 .workspace-link[aria-current] svg { color: var(--green-dark); }
-.workspace-side :focus-visible { outline-color: #33775c; }
+.workspace-side :focus-visible { outline-color: #2f6fd0; }
 .workspace-secondary { border-color: var(--line); }
 .workspace-heading h1 { font: 400 clamp(2rem, 4.2vw, 3.45rem)/1.12 var(--display-font); letter-spacing: -.025em; }
 .workspace .panel, .workspace .dashboard-balance { background: var(--surface); border-color: var(--line); border-radius: 8px; }

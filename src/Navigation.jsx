@@ -101,7 +101,7 @@ export function SiteHeader({ section = 'personal', signedIn, showAccountLink }) 
   }}>
     <a className="skip-link" href="#public-content">Skip to content</a>
     <div className="shell editorial-header-inner">
-      <Link to="/" className="brand-link" aria-label="Harborline Bank home" onClick={dismiss}><Brand /></Link>
+      <Link to="/" className="brand-link" aria-label="Northpoint Bank home" onClick={dismiss}><Brand /></Link>
       <nav className="bank-header-utilities" aria-label="Help and search">
         <Link page="locations" onClick={dismiss}>Locations</Link><Link page="help" onClick={dismiss}>Help</Link>
         <Link page="search" className="editorial-search" onClick={dismiss}><Icon name="search" />Search</Link>
@@ -136,6 +136,6 @@ export function SiteFooter() {
       <div><Link to="/" className="brand-link"><Brand /></Link></div>
       {footerGroups.map(([title, keys]) => <nav aria-label={title} key={title}><h2>{title}</h2>{keys.map(key => <Link page={key} key={key}>{pages[key].label}</Link>)}</nav>)}
     </div>
-    <div className="shell footer-note"><Link page="about">About Harborline</Link><Link page="security">Privacy & security</Link><Link page="search">Search the site</Link><Link to="/admin">Owner access</Link></div>
+    <div className="shell footer-note"><Link page="about">About Northpoint</Link><Link page="security">Privacy & security</Link><Link page="search">Search the site</Link><Link to="/admin">Owner access</Link></div>
   </footer>;
 }

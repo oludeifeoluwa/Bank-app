@@ -70,15 +70,15 @@ export function OwnerGateway({ user, onSetup, onSignOut, onExpired }) {
         user.isDemo ? <><p className="muted">Alex is the shared walkthrough profile. Use a private profile for owner access.</p><button className="button button-primary" onClick={usePrivateProfile}>Use a private profile</button></> :
         !data ? <RequestState error={loadError} onRetry={() => setVersion(value => value + 1)} loading="Checking owner access…" /> :
         data.available ? <>
-          <p className="muted">Set up <strong>{user.username}</strong> as the owner of this Harborline installation.</p>
-          <ol className="owner-setup-steps"><li>Open <strong>Setup-Harborline-Admin.cmd</strong> in your Harborline folder.</li><li>Copy the one-time code from that window. It expires after 20 minutes.</li><li>Paste it below to activate your owner workspace.</li></ol>
+          <p className="muted">Set up <strong>{user.username}</strong> as the owner of this Northpoint installation.</p>
+          <ol className="owner-setup-steps"><li>Open <strong>Setup-Northpoint-Admin.cmd</strong> in your Northpoint folder.</li><li>Copy the one-time code from that window. It expires after 20 minutes.</li><li>Paste it below to activate your owner workspace.</li></ol>
           <form className="workspace-form" onSubmit={claim}>
             <label className="field">Owner setup code<input className="control" type="password" autoComplete="off" spellCheck={false} required value={code} maxLength={28} onChange={event => setCode(event.target.value)} /></label>
             <button className="button button-primary" disabled={busy}>{busy ? 'Setting up…' : 'Activate owner access'}</button>
           </form>
         </> : <><p className="muted">Owner access is assigned to a different profile on this installation.</p><button className="button button-primary" onClick={usePrivateProfile}>Sign in as owner</button></>}
       {error && <p className="error" role="alert">{error}</p>}
-      <Link to="/" className="link">Return to Harborline <Icon name="arrow" /></Link>
+      <Link to="/" className="link">Return to Northpoint <Icon name="arrow" /></Link>
     </section>
   </main>;
 }

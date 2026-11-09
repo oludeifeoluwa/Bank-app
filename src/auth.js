@@ -12,13 +12,13 @@ export async function apiRequest(path, { method = 'GET', body, userId, signal } 
     signal,
   }).catch(error => {
     if (error.name === 'AbortError') throw error;
-    throw new Error('Harborline is temporarily unavailable. Check that the backend is running and try again.');
+    throw new Error('Northpoint is temporarily unavailable. Check that the backend is running and try again.');
   });
 
   if (response.status === 204) return null;
   const data = await response.json().catch(() => null);
   if (!response.ok || !data) {
-    throw Object.assign(new Error(data?.error ?? 'Harborline is temporarily unavailable. Check that the backend is running and try again.'), { status: response.status });
+    throw Object.assign(new Error(data?.error ?? 'Northpoint is temporarily unavailable. Check that the backend is running and try again.'), { status: response.status });
   }
   return data;
 }

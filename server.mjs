@@ -180,7 +180,7 @@ export async function createApp({
     if (req.method === 'POST') {
       const origin = req.get('origin');
       if ((origin && origin !== 'http://' + req.get('host')) || req.get('sec-fetch-site') === 'cross-site') {
-        return next(problem(403, 'Open Harborline directly to use your demo account.'));
+        return next(problem(403, 'Open Northpoint directly to use your demo account.'));
       }
       if (!req.is('application/json')) return next(problem(415, 'Send a JSON request.'));
     }
@@ -365,7 +365,7 @@ export async function createApp({
     if (res.headersSent) return next(error);
     const status = error.status ?? 500;
     if (status >= 500) console.error(error);
-    const message = status >= 500 ? 'Harborline could not complete the request. Try again.'
+    const message = status >= 500 ? 'Northpoint could not complete the request. Try again.'
       : error.type === 'entity.parse.failed' ? 'Send valid JSON.'
         : error.type === 'entity.too.large' ? 'The request is too large.' : error.message;
     res.status(status).json({ error: message });

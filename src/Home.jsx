@@ -51,7 +51,7 @@ function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
   }
 
   return <section id="demo-sign-in" className="login" aria-labelledby="login-title">
-    <h2 id="login-title">Sign in to Harborline</h2>
+    <h2 id="login-title">Sign in to Northpoint</h2>
     <p className="muted login-intro">Practice environment. No real money moves.</p>
     <form onSubmit={submit}>
       <label className="field" htmlFor="sign-in-identity">Username or email</label>
@@ -86,7 +86,7 @@ function TrustBar() {
 }
 
 const highlights = [
-  ['savings', '3.75%', 'APY', 'Grow balances faster with Harbor Savings.'],
+  ['savings', '3.75%', 'APY', 'Grow balances faster with Northpoint Savings.'],
   ['card', '$0', 'monthly fee', 'Everyday Checking with no minimum balance.'],
   ['grid', '55,000+', 'fee-free ATMs', 'Withdraw cash across the nationwide network.'],
   ['check', '4.8★', 'app rating', 'Rated by people managing money every day.'],
@@ -95,7 +95,7 @@ const highlights = [
 function Highlights() {
   return <section className="harbor-highlights" aria-labelledby="highlights-title">
     <div className="shell">
-      <div className="harbor-section-title"><h2 id="highlights-title">Why people choose Harborline</h2><Link className="link" page="checking">Compare accounts <Icon name="arrow" /></Link></div>
+      <div className="harbor-section-title"><h2 id="highlights-title">Why people choose Northpoint</h2><Link className="link" page="checking">Compare accounts <Icon name="arrow" /></Link></div>
       <ul className="harbor-highlight-grid">{highlights.map(([icon, figure, unit, note]) => <li className="harbor-highlight" key={unit}>
         <span className="harbor-highlight-icon"><Icon name={icon} /></span>
         <strong>{figure} <span className="harbor-highlight-unit">{unit}</span></strong>

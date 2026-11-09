@@ -12,7 +12,7 @@ const hubs = {
   commercial: ['Commercial banking', 'Manage cash, payments, and growth', 'Explore treasury, payments, financing, and the tools larger organizations use to run day-to-day operations.', 'briefcase', 'commercial', ['treasury','commercial-payments','commercial-lending','industries','cash-planner','commercial-insights']],
   digital: ['Digital Banking', 'Digital banking', 'Manage payments, cards, and statements in one place.', 'card', 'digital', ['deposit-guide','bill-pay-guide','statements-guide','card-controls','transfers','activity-help','details-guide','alerts-guide','direct-deposit']],
   help: ['Customer support', 'How can we help?', 'Find the right guide for sign-in, account activity, payments, and security.', 'info', 'support', ['signin-help','transfers','activity-help','security','locations','contact','report-issue','fraud-support','accessibility']],
-  resources: ['Resources', 'Find a tool or a guide', 'Browse calculators, banking tools, industry guides, and updates from Harborline in one place.', 'book', 'resources', ['community','site-map','about']],
+  resources: ['Resources', 'Find a tool or a guide', 'Browse calculators, banking tools, industry guides, and updates from Northpoint in one place.', 'book', 'resources', ['community','site-map','about']],
 };
 
 const details = {
@@ -65,14 +65,14 @@ const details = {
   'signin-help': ['Sign-in help', 'help', 'Sign in to your profile or use the sample account.', ['Select Create an account on the sign-in form to choose a username and password.','Use the same username and password when you return.','For the built-in account, select Use sample account, then Sign in.','Your balance and activity are saved on this installation.']],
   transfers: ['Transfers', 'help', 'Review a transfer, confirm the amount, and find the posted entry.', ['Select Pay & transfer after signing in.','Choose a recipient and enter a positive amount within your available balance.','Review and confirm to see a receipt and a new entry in Activity.']],
   'activity-help': ['Account activity', 'help', 'Search and filter the activity list to find a payment or transfer.', ['Select Activity from the account navigation.','Enter part of a description in Search activity.','Use Transaction type to show only deposits, purchases, bill payments, or transfers.']],
-  security: ['Privacy & security', 'help', 'Harborline stores account data on this installation.', ['Choose a password you use only for Harborline.','Review the recipient and amount before confirming a transfer.','Sign out when you finish. Your balance and activity will be there when you return.']],
+  security: ['Privacy & security', 'help', 'Northpoint stores account data on this installation.', ['Choose a password you use only for Northpoint.','Review the recipient and amount before confirming a transfer.','Sign out when you finish. Your balance and activity will be there when you return.']],
   'fraud-support': ['Security & fraud help', 'help', 'Practice the first steps you would take after finding an unfamiliar account entry.', ['Search Activity by description or reference and check its status.','Use Card controls to lock your debit card.','Open Report an issue and choose the category that fits.']],
-  accessibility: ['Accessibility', 'help', 'Use Harborline with a keyboard, on a small screen, or with a screen reader.', ['Use the Skip to content link to bypass public navigation.','Use the dashboard Menu button on smaller screens to reach account and owner tools.','Cash flow totals are available as text alongside the chart.']],
+  accessibility: ['Accessibility', 'help', 'Use Northpoint with a keyboard, on a small screen, or with a screen reader.', ['Use the Skip to content link to bypass public navigation.','Use the dashboard Menu button on smaller screens to reach account and owner tools.','Cash flow totals are available as text alongside the chart.']],
   locations: ['Branches & ATMs', 'help', 'Explore examples of the services often available at branches and ATMs.', ['Branches can help with in-person account questions.','ATMs can provide self-service access to selected account features.','These example locations show the types of services you can look for.']],
   contact: ['Contact & appointments', 'help', 'Find the right guide for a common account question.', ['For sign-in, open the sign-in guide.','For a transfer, review the steps and confirm the new activity entry.','For account history, use the search and filter controls.']],
-  community: ['Community & updates', 'resources', 'See what is new in Harborline and find short guides to share with your class or team.'],
-  'site-map': ['Site map', 'resources', 'Browse every public product, tool, and support page in Harborline.'],
-  about: ['About Harborline', 'resources', 'Harborline is a practice environment for exploring banking and account operations. No real money moves.', ['Public guides explain common banking concepts using sample scenarios.','Each account keeps its own activity on this installation.','Owner access is assigned to a private profile using a one-time local setup code.']],
+  community: ['Community & updates', 'resources', 'See what is new in Northpoint and find short guides to share with your class or team.'],
+  'site-map': ['Site map', 'resources', 'Browse every public product, tool, and support page in Northpoint.'],
+  about: ['About Northpoint', 'resources', 'Northpoint is a practice environment for exploring banking and account operations. No real money moves.', ['Public guides explain common banking concepts using sample scenarios.','Each account keeps its own activity on this installation.','Owner access is assigned to a private profile using a one-time local setup code.']],
 };
 
 const paths = {
@@ -87,7 +87,7 @@ export const pages = Object.fromEntries(Object.entries(hubs).map(([key, [label,t
 for (const [key,[label,parent,description,points,calculator]] of Object.entries(details)) {
   pages[key]={key,label,title:label,parent,description,points,calculator,icon:pages[parent].icon,section:pages[parent].section,path:paths[parent]+'/'+key};
 }
-pages.search={key:'search',label:'Search',title:'Search Harborline',description:'Find products, tools, and account guides.',section:'support',icon:'search',path:'/search'};
+pages.search={key:'search',label:'Search',title:'Search Northpoint',description:'Find products, tools, and account guides.',section:'support',icon:'search',path:'/search'};
 export const pageByPath=new Map(Object.values(pages).map(page=>[page.path,page]));
 export const hrefFor=(key)=>pages[key]?.path || '/';
 

@@ -33,7 +33,7 @@ function App() {
   const page = pageByPath.get(pathname);
 
   useEffect(() => {
-    document.title = (admin ? 'Owner workspace | ' : page ? page.label + ' | ' : '') + 'Harborline Bank';
+    document.title = (admin ? 'Owner workspace | ' : page ? page.label + ' | ' : '') + 'Northpoint Bank';
   }, [page, admin]);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function App() {
 
   return <>
     {(home || admin) && user === undefined ? <main className="shell bank-main">
-      {sessionError ? <><p className="error" role="alert">{sessionError}</p><button className="button button-outline" onClick={() => { setSessionError(''); setAttempt(value => value + 1); }}>Try again</button></> : <p role="status">Opening Harborline…</p>}
+      {sessionError ? <><p className="error" role="alert">{sessionError}</p><button className="button button-outline" onClick={() => { setSessionError(''); setAttempt(value => value + 1); }}>Try again</button></> : <p role="status">Opening Northpoint…</p>}
     </main> : user && home ? <Bank key={user.id} user={user} page={task} navigate={next => go(next === 'overview' ? '/' : '/?task=' + next)} onSignOut={endSession} onExpired={() => updateSession(null)} /> :
     admin && user?.role === 'owner' ? <OwnerWorkspace key={user.id} user={user} view={address.searchParams.get('view')} accountId={address.searchParams.get('account')} onSignOut={endSession} onExpired={() => updateSession(null)} /> : <>
       <SiteHeader key={pathname} section={page?.section} signedIn={Boolean(user)} showAccountLink={page?.key !== 'digital'} />

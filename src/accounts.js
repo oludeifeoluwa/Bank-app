@@ -1,6 +1,6 @@
 // Companion display accounts for the Overview.
 //
-// Harborline persists one real checking ledger per practice profile. To make the
+// Northpoint persists one real checking ledger per practice profile. To make the
 // Overview feel like a full bank relationship, this module derives two additional
 // sample accounts (a savings account and a credit card) from the signed-in user.
 // Their balances and activity are generated deterministically so they stay stable
@@ -111,14 +111,14 @@ export function buildAccounts(user, checkingBalance, ledger = []) {
   };
 
   const savings = {
-    id: 'savings', name: 'Harbor Savings', type: 'Savings', icon: 'savings',
+    id: 'savings', name: 'Northpoint Savings', type: 'Savings', icon: 'savings',
     lastFour: String(s.int(1000, 9999)), balanceCents: savingsBalance, kind: 'deposit',
     apy: '3.75%', tagline: 'Available balance', sample: true,
     activity: savingsActivity(savingsSeed ^ 0x9e37, savingsBalance),
   };
 
   const credit = {
-    id: 'credit', name: 'Harborline Platinum Card', type: 'Credit card', icon: 'card',
+    id: 'credit', name: 'Northpoint Platinum Card', type: 'Credit card', icon: 'card',
     lastFour: String(c.int(1000, 9999)), balanceCents: creditOwed, limitCents: creditLimit,
     availableCents: creditLimit - creditOwed, kind: 'credit', tagline: 'Current balance', sample: true,
     activity: creditActivity(creditSeed ^ 0x2545),

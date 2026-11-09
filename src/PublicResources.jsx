@@ -111,7 +111,7 @@ export function PublicSiteMap() {
   const top = [...personalNav, 'business', 'commercial', 'digital', 'help', 'resources'];
   return <section className="site-map-grid" aria-label="Public pages by category">{top.map(key => <section key={key}><h2><Link page={key}>{pages[key].label}</Link></h2><ul>
     {Object.values(pages).filter(page => page.parent === key).map(page => <li key={page.key}><Link page={page.key}>{page.label}</Link></li>)}
-  </ul></section>)}<section><h2>Quick links</h2><ul><li><Link to="/">Home</Link></li><li><Link page="search">Search Harborline</Link></li><li><Link to="/admin">Owner access</Link></li></ul></section></section>;
+  </ul></section>)}<section><h2>Quick links</h2><ul><li><Link to="/">Home</Link></li><li><Link page="search">Search Northpoint</Link></li><li><Link to="/admin">Owner access</Link></li></ul></section></section>;
 }
 
 const briefs = [
@@ -126,12 +126,12 @@ const updates = [
 ];
 
 export function EditorialResources({ community = false }) {
-  return <section className="resource-editorial" aria-label={community ? 'Recent Harborline updates' : 'Commercial briefs'}>
-    <h2>{community ? 'Latest from Harborline' : 'Commercial briefs'}</h2>
+  return <section className="resource-editorial" aria-label={community ? 'Recent Northpoint updates' : 'Commercial briefs'}>
+    <h2>{community ? 'Latest from Northpoint' : 'Commercial briefs'}</h2>
     <div className="resource-editorial-grid">{(community ? updates : briefs).map(([category, title, description, key]) => <article className="panel resource-tool" key={key}>
       <p className="resource-kicker">{category}</p><h3>{title}</h3><p className="muted">{description}</p><Link className="link" page={key}>Open guide <Icon name="arrow" /></Link>
     </article>)}</div>
-    {community && <p className="muted resource-community-note">Community updates and guides are published here in Harborline. Keep passwords, account details, and screenshots with personal information out of public posts.</p>}
+    {community && <p className="muted resource-community-note">Community updates and guides are published here in Northpoint. Keep passwords, account details, and screenshots with personal information out of public posts.</p>}
   </section>;
 }
 

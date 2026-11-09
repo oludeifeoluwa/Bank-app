@@ -39,7 +39,7 @@ export function CardControls({ user, locked, balance, onLock, onPurchase }) {
     <div className="workspace-columns">
       <section className="panel workspace-panel">
         <div className="workspace-section-heading"><h2>Debit card</h2><span className={'status-pill ' + (locked ? 'status-scheduled' : 'status-posted')}>{locked ? 'Locked' : 'Unlocked'}</span></div>
-        <div className="practice-card"><Icon name="logo" /><strong>Harborline</strong><span>Debit</span><small>Linked to Everyday Checking · •••• {user.lastFour}</small></div>
+        <div className="practice-card"><Icon name="logo" /><strong>Northpoint</strong><span>Debit</span><small>Linked to Everyday Checking · •••• {user.lastFour}</small></div>
         <p className="muted">A locked card declines new sample purchases. Existing transactions stay in Activity.</p>
         <button className="button button-outline" disabled={busy} onClick={() => run(async () => {
           await onLock(!locked);

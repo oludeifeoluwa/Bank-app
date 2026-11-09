@@ -102,7 +102,7 @@ const FAQs = {
   savings:[['How does the savings estimate work?', 'The example subtracts the money already saved and divides the remainder by the number of months.'],['Can I try a transfer to savings?', 'Choose Oak Street Savings as the sample recipient in Pay & transfer.']],
   home:[['What does the payment estimate include?', 'It estimates monthly principal and interest based on the price, down payment, sample rate, and term.']],
   auto:[['Can I compare terms?', 'Change the term in the calculator and recalculate to see how the monthly estimate changes.']],
-  help:[['Do I need to create an account?', 'Select Use sample account on the sign-in form to explore an account with example activity.'],['Where is activity stored?', 'Harborline saves each account’s activity on this installation.']],
+  help:[['Do I need to create an account?', 'Select Use sample account on the sign-in form to explore an account with example activity.'],['Where is activity stored?', 'Northpoint saves each account’s activity on this installation.']],
   business:[['What can I explore in Business banking?', 'Use the guides for business checking, card payments, credit cards, and recordkeeping.']],
   commercial:[['Where can I learn about cash management?', 'The Treasury management guide covers cash visibility, forecasting, and payment controls.']],
 };
@@ -125,7 +125,7 @@ export function ProductPage({ page, signedIn }) {
   return <main id="public-content" tabIndex={-1}>
     <Breadcrumbs page={page} />
     <section className="route-hero"><div className="shell route-hero-grid">
-      <div><p className="eyebrow">{parent ? parent.label : page.section === 'personal' ? 'Personal banking' : 'Harborline Bank'}</p>
+      <div><p className="eyebrow">{parent ? parent.label : page.section === 'personal' ? 'Personal banking' : 'Northpoint Bank'}</p>
         <h1>{page.title}</h1><p>{page.description}</p>
         <div className="route-actions">
           {merchant ? <Link page="payment-finder" className="button button-primary">Find a payment workflow <Icon name="arrow" /></Link> :
@@ -151,7 +151,7 @@ export function ProductPage({ page, signedIn }) {
       {page.key === 'community' && <EditorialResources community />}
       {page.key === 'commercial-insights' && <EditorialResources />}
       {page.key === 'compare-checking' && <CheckingComparison />}
-      {page.children && <section aria-labelledby="options"><p className="eyebrow">Explore your options</p><h2 id="options">{page.label} at Harborline</h2>
+      {page.children && <section aria-labelledby="options"><p className="eyebrow">Explore your options</p><h2 id="options">{page.label} at Northpoint</h2>
         <div className="route-card-grid">{page.children.map(key => <PageCard key={key} item={pages[key]} />)}</div>
       </section>}
       {page.key === 'business' && <PhotoFeatures />}
@@ -165,7 +165,7 @@ export function ProductPage({ page, signedIn }) {
       {['buy-home','refinance-home'].includes(page.key) && <Link page="mortgage-calculator" className="link">Estimate a monthly payment <Icon name="arrow" /></Link>}
       {page.points && <section className="detail-section"><h2>{page.calculator ? 'About this estimate' : 'What to know'}</h2><ul>{page.points.map(point => <li key={point}><span><Icon name="check" /></span>{point}</li>)}</ul></section>}
       {FAQs[page.key] && <section className="faqs"><h2>Frequently asked questions</h2>{FAQs[page.key].map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</section>}
-      {next.length > 0 && <section aria-labelledby="related"><p className="eyebrow">More from Harborline</p><h2 id="related">You might also be looking for</h2><div className="route-card-grid">{next.map(key => <PageCard key={key} item={pages[key]} />)}</div></section>}
+      {next.length > 0 && <section aria-labelledby="related"><p className="eyebrow">More from Northpoint</p><h2 id="related">You might also be looking for</h2><div className="route-card-grid">{next.map(key => <PageCard key={key} item={pages[key]} />)}</div></section>}
     </div>
   </main>;
 }
@@ -178,7 +178,7 @@ export function SearchPage({ query }) {
     (page.label + ' ' + page.description).toLowerCase().includes(term)));
   return <main id="public-content" tabIndex={-1}>
     <Breadcrumbs page={pages.search} />
-    <section className="shell search-page"><p className="eyebrow">Products, tools & guides</p><h1>Search Harborline</h1>
+    <section className="shell search-page"><p className="eyebrow">Products, tools & guides</p><h1>Search Northpoint</h1>
       <form onSubmit={event => { event.preventDefault(); go('/search?q=' + encodeURIComponent(input.trim())); }}>
         <label className="field" htmlFor="site-search">Search the site</label>
         <div><input className="control" id="site-search" type="search" placeholder="Try checking, auto, or transfers" value={input} onChange={event => setInput(event.target.value)} /><button className="button button-primary"><Icon name="search" /> Search</button></div>
@@ -191,5 +191,5 @@ export function SearchPage({ query }) {
 }
 
 export function MissingPage() {
-  return <main id="public-content" tabIndex={-1}><Breadcrumbs /><section className="shell search-page"><h1>Page not found</h1><p>Find a product or tool through the homepage or site search.</p><div className="route-actions"><Link to="/" className="button button-primary">Go to homepage</Link><Link page="search" className="button button-outline">Search Harborline</Link></div></section></main>;
+  return <main id="public-content" tabIndex={-1}><Breadcrumbs /><section className="shell search-page"><h1>Page not found</h1><p>Find a product or tool through the homepage or site search.</p><div className="route-actions"><Link to="/" className="button button-primary">Go to homepage</Link><Link page="search" className="button button-outline">Search Northpoint</Link></div></section></main>;
 }

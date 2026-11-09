@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Icon } from './Art.jsx';
 
 export function Brand() {
-  return <span className="brand"><span className="brand-mark"><Icon name="logo" /></span>Harborline <span>Bank</span></span>;
+  return <span className="brand"><span className="brand-mark"><Icon name="logo" /></span>Northpoint <span>Bank</span></span>;
 }
 
 export function Dialog({ title, eyebrow, children, onClose }) {
