@@ -38,7 +38,7 @@ a { text-underline-offset: .18em; }
 .editorial-header, .workspace-top { background: var(--ink); color: var(--surface); border-color: transparent; }
 .editorial-header-inner { display: flex; min-height: 70px; align-items: center; gap: 22px; }
 .editorial-header .brand, .workspace-top .brand { color: var(--surface); }
-.editorial-header .brand-mark, .workspace-top .brand-mark { color: #a7ccb5; }
+.editorial-header .brand-mark, .workspace-top .brand-mark { color: #aacdf4; }
 .bank-header-utilities { margin-left: auto; display: flex; align-items: center; gap: clamp(14px, 2vw, 30px); }
 .bank-header-utilities a { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; color: var(--surface); font-size: .9rem; text-decoration: none; }
 .bank-header-utilities a:hover { text-decoration: underline; }
