@@ -42,7 +42,7 @@ function LedgerItems({ entries, kind, onChange }) {
         <button className="button button-outline small-button" disabled={busy} onClick={() => apply(entry.reference, 'post')}>{deposit ? 'Clear check' : 'Post payment'}</button>
         {!deposit && <button className="link" disabled={busy} onClick={() => apply(entry.reference, 'cancel')}>Cancel payment</button>}
       </div>}
-    </li>)}</ul> : <p className="muted">{deposit ? 'Sample checks you submit will appear here.' : 'Bills you schedule will appear here.'}</p>}
+    </li>)}</ul> : <p className="muted">{deposit ? 'Checks you submit will appear here.' : 'Bills you schedule will appear here.'}</p>}
   </ActionPanel>;
 }
 
@@ -79,11 +79,11 @@ function Deposits({ ledger, onAdd, onChange }) {
     <ActionPanel title="Submit a check">
       <p className="muted">Choose an available check. It stays pending until you clear it below.</p>
       {remaining.length ? <form className="tool-form" onSubmit={submit}>
-        <label className="field">Sample check<select className="control" value={check} onChange={event => setCheck(event.target.value)} required>
-          <option value="">Choose a sample check</option>{remaining.map(([key, item]) => <option key={key} value={key}>{item.label} · {money(item.cents)}</option>)}
+        <label className="field">Check<select className="control" value={check} onChange={event => setCheck(event.target.value)} required>
+          <option value="">Choose a check</option>{remaining.map(([key, item]) => <option key={key} value={key}>{item.label} · {money(item.cents)}</option>)}
         </select></label>{check && <p className="muted">Check amount <strong>{money(sampleChecks[check].cents)}</strong></p>}<button className="button button-primary" disabled={busy}>Submit check</button>
-      </form> : <p className="muted">All sample checks have been submitted for this account.</p>}
-      {message && <p className="tool-message" role="status"><span className="record-label">Practice record</span> · {message}</p>}{error && <p className="error" role="alert">{error}</p>}
+      </form> : <p className="muted">All checks have been submitted for this account.</p>}
+      {message && <p className="tool-message" role="status"><span className="record-label">Record</span> · {message}</p>}{error && <p className="error" role="alert">{error}</p>}
     </ActionPanel>
     <LedgerItems entries={entries} kind="deposit" onChange={onChange} />
   </div>;
@@ -133,7 +133,7 @@ function BillPay({ ledger, onAdd, onChange }) {
         <label className="field">Payment date<input className="control" type="date" min={localDate()} value={scheduledFor} onChange={event => setScheduledFor(event.target.value)} required /></label>
         <button className="button button-primary" disabled={busy}>Schedule payment</button>
       </form>
-      {message && <p className="tool-message" role="status"><span className="record-label">Practice record</span> · {message}</p>}{error && <p className="error" role="alert">{error}</p>}
+      {message && <p className="tool-message" role="status"><span className="record-label">Record</span> · {message}</p>}{error && <p className="error" role="alert">{error}</p>}
     </ActionPanel>
     <LedgerItems entries={entries} kind="bill" onChange={onChange} />
   </div>;
@@ -147,7 +147,7 @@ function Statements({ user, transactions, balance, Transactions }) {
   const summary = [['Opening balance', opening], ['Credits', credits], ['Debits', debits], ['Closing balance', closing]];
 
   function download() {
-    const rows = [['Northpoint Bank statement — Practice record', month], ['Account', `Everyday Checking ending in ${user.lastFour}`],
+    const rows = [['Northpoint Bank statement — Record', month], ['Account', `Everyday Checking ending in ${user.lastFour}`],
       ...summary.map(([label, cents]) => [label, (cents / 100).toFixed(2)]), [],
       ['Date', 'Description', 'Type', 'Amount (USD)'],
       ...entries.map(entry => [localDate(entry.date), entry.description, entry.type, (entry.amount / 100).toFixed(2)])];
@@ -155,7 +155,7 @@ function Statements({ user, transactions, balance, Transactions }) {
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'harborline-practice-statement-' + month + '.csv';
+    link.download = 'northpoint-statement-' + month + '.csv';
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }

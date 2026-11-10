@@ -21,7 +21,7 @@ export function AccountsList({ accounts, compact = false, selected }) {
     {!compact && <div className="owner-list-search"><label className="field">Find an account<input type="search" className="control" placeholder="Username or last four" value={query} onChange={event => setQuery(event.target.value)} /></label></div>}
     {shown.length ? <ul className="workspace-list">{shown.map(account => <li key={account.id}>
       <Link className="workspace-row" to={accountPath(account.id)} aria-current={selected === account.id ? 'page' : undefined}>
-        <span className="owner-row-person"><span className="avatar" aria-hidden="true">{account.username.slice(0, 2).toUpperCase()}</span><span><strong>{account.username}</strong><small>•••• {account.lastFour} · {account.role === 'owner' ? 'Owner' : account.isDemo ? 'Sample account' : 'Customer'}</small></span></span>
+        <span className="owner-row-person"><span className="avatar" aria-hidden="true">{account.username.slice(0, 2).toUpperCase()}</span><span><strong>{account.username}</strong><small>•••• {account.lastFour} · {account.role === 'owner' ? 'Owner' : account.isDemo ? 'Customer' : 'Customer'}</small></span></span>
         <span>{money(account.balance)}</span><Icon name="chevron" />
       </Link>
     </li>)}</ul> : <div className="workspace-empty"><strong>No matching accounts</strong><p>Search by username or the last four digits.</p></div>}
@@ -33,7 +33,7 @@ export function PaymentQueue({ queue, compact = false, onReview }) {
   const shown = compact ? queue.slice(0, 4) : queue.filter(item => !kind || item.kind === kind);
   return <section className="panel owner-list-panel">
     <div className="panel-heading"><div><h2>Payment queue</h2><p className="muted">Pending checks and scheduled bills</p></div>{compact ? <Link to="/admin?view=payments" className="link">Open queue <Icon name="arrow" /></Link> :
-      <select className="control owner-queue-filter" aria-label="Payment item type" value={kind} onChange={event => setKind(event.target.value)}><option value="">All open items</option><option value="deposit">Sample checks</option><option value="bill">Scheduled bills</option></select>}</div>
+      <select className="control owner-queue-filter" aria-label="Payment item type" value={kind} onChange={event => setKind(event.target.value)}><option value="">All open items</option><option value="deposit">Checks</option><option value="bill">Scheduled bills</option></select>}</div>
     {shown.length ? <ul className="workspace-list owner-queue-list">{shown.map(item => {
       const deposit = item.kind === 'deposit';
       return <li className="owner-queue-row" key={item.account.id + ':' + item.reference}>
@@ -41,7 +41,7 @@ export function PaymentQueue({ queue, compact = false, onReview }) {
         <div className="owner-queue-amount"><strong>{money(item.cents)}</strong><span className={'status-pill status-' + item.status}>{item.status}</span></div>
         {!compact && <div className="owner-queue-actions"><button className="button button-outline small-button" onClick={() => onReview(item, 'post')}>{deposit ? 'Review check' : 'Review posting'}</button><button className="link" onClick={() => onReview(item, deposit ? 'decline' : 'cancel')}>{deposit ? 'Decline' : 'Cancel bill'}</button></div>}
       </li>;
-    })}</ul> : <div className="workspace-empty"><strong>{queue.length ? 'No items match this filter' : 'The queue is clear'}</strong><p>{queue.length ? 'Choose another payment item type.' : 'Sample checks and scheduled bills appear here when customers submit them.'}</p></div>}
+    })}</ul> : <div className="workspace-empty"><strong>{queue.length ? 'No items match this filter' : 'The queue is clear'}</strong><p>{queue.length ? 'Choose another payment item type.' : 'Checks and scheduled bills appear here when customers submit them.'}</p></div>}
   </section>;
 }
 
@@ -61,7 +61,7 @@ export function AuditLog({ events, compact = false }) {
     && [auditLabel(event), auditTarget(event), event.actor, event.memo, event.reference].join(' ').toLowerCase().includes(query.trim().toLowerCase()));
 
   function exportAudit() {
-    downloadCsv('harborline-practice-audit.csv', ['Timestamp','Owner','Action','Target','Change (USD)','Reason','Reference'], shown.map(event => [
+    downloadCsv('northpoint-audit.csv', ['Timestamp','Owner','Action','Target','Change (USD)','Reason','Reference'], shown.map(event => [
       event.date, event.actor, auditLabel(event), auditTarget(event), auditAmount(event) === null ? '' : (auditAmount(event) / 100).toFixed(2), event.memo, event.reference,
     ]));
   }

@@ -28,7 +28,6 @@ export function WorkspaceShell({ label, user, nav, secondary, onSignOut, childre
     <header className="workspace-top">
       <Link className="brand-link" to="/" aria-label="Northpoint Bank account overview"><Brand /></Link>
       <button ref={menu} className="button button-outline small-button workspace-menu" aria-expanded={menuOpen} aria-controls="workspace-side" onClick={() => setMenuOpen(!menuOpen)}><Icon name="menu" /> Menu</button>
-      <span className="workspace-context">Practice environment</span>
       <div className="workspace-profile"><span className="avatar" aria-hidden="true">{user.username.slice(0, 2).toUpperCase()}</span><span className="workspace-profile-name">{user.username}</span><button className="button button-outline small-button" disabled={signingOut} onClick={leave}>{signingOut ? 'Signing out…' : 'Sign out'}</button></div>
     </header>
     <div className="workspace-frame">

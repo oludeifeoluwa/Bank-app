@@ -39,7 +39,7 @@ export function DemoIssueReport() {
         <option value="">Choose a category</option>{issues.map(issue => <option key={issue}>{issue}</option>)}
       </select></label><button className="button button-primary">Submit report</button>
     </form>
-    {receipt && <p className="tool-message" role="status">{receipt.topic} recorded. <span className="record-label">Practice record</span> · Reference {receipt.reference}.</p>}
+    {receipt && <p className="tool-message" role="status">{receipt.topic} recorded. <span className="record-label">Record</span> · Reference {receipt.reference}.</p>}
   </section>;
 }
 

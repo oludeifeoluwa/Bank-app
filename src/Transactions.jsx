@@ -21,7 +21,7 @@ export function downloadCsv(name, headers, rows) {
     const safe = /^[\s]*[=+@\-]/.test(text) && !/^-?\d+(\.\d+)?$/.test(text) ? "'" + text : text;
     return '"' + safe.replaceAll('"', '""') + '"';
   };
-  const csv = [[...headers, 'Record type'], ...rows.map(row => [...row, 'Practice record'])]
+  const csv = [[...headers, 'Record type'], ...rows.map(row => [...row, 'Record'])]
     .map(row => row.map(cell).join(',')).join('\r\n');
   const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
   const link = document.createElement('a');

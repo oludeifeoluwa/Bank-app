@@ -40,14 +40,14 @@ export function CardControls({ user, locked, balance, onLock, onPurchase }) {
       <section className="panel workspace-panel">
         <div className="workspace-section-heading"><h2>Debit card</h2><span className={'status-pill ' + (locked ? 'status-scheduled' : 'status-posted')}>{locked ? 'Locked' : 'Unlocked'}</span></div>
         <div className="practice-card"><Icon name="logo" /><strong>Northpoint</strong><span>Debit</span><small>Linked to Everyday Checking · •••• {user.lastFour}</small></div>
-        <p className="muted">A locked card declines new sample purchases. Existing transactions stay in Activity.</p>
+        <p className="muted">A locked card declines new purchases. Existing transactions stay in Activity.</p>
         <button className="button button-outline" disabled={busy} onClick={() => run(async () => {
           await onLock(!locked);
           return locked ? 'Card unlocked.' : 'Card locked.';
         })}><Icon name="lock" /> {locked ? 'Unlock card' : 'Lock card'}</button>
       </section>
       <section className="panel workspace-panel">
-        <div className="workspace-section-heading"><h2>Try a sample purchase</h2></div>
+        <div className="workspace-section-heading"><h2>Make a purchase</h2></div>
         <p className="muted">Available balance <strong>{money(balance)}</strong></p>
         <form className="workspace-form" onSubmit={purchase}>
           <label className="field">Merchant<select className="control" required value={merchant} disabled={busy} onChange={event => { setMerchant(event.target.value); request.current = null; }}><option value="">Choose a merchant</option>{Object.entries(purchaseMerchants).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>

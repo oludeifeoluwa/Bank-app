@@ -54,7 +54,7 @@ function TransferDialog({ balance, onClose, onConfirm }) {
   const labels = {
     details: ['Transfer money', 'Step 1 of 2 · Details'],
     review: ['Review your transfer', 'Step 2 of 2 · Review'],
-    receipt: ['Transfer posted', 'Practice record'],
+    receipt: ['Transfer posted', 'Record'],
   };
   const [title, eyebrow] = labels[step];
   const errorMessage = error && <p className="error" role="alert">{error}</p>;
@@ -129,7 +129,7 @@ export function Bank({ user, onSignOut, onExpired, page, navigate }) {
 
   async function addFunds(details) {
     const entry = await updateAccount('funds', details);
-    setAnnouncement(money(entry.cents) + ' in test funds added.');
+    setAnnouncement(money(entry.cents) + ' added to your balance.');
   }
 
   const { balance, ledger, transactions, cardLocked } = account ?? {};
@@ -156,7 +156,7 @@ export function Bank({ user, onSignOut, onExpired, page, navigate }) {
         <div className="workspace-filters"><label className="field">Search activity<input className="control" type="search" placeholder="Description or reference" value={query} onChange={event => setQuery(event.target.value)} /></label>
           <label className="field">Transaction type<select className="control" value={type} onChange={event => setType(event.target.value)}><option value="">All transactions</option>{transactionTypes.map(label => <option key={label}>{label}</option>)}</select></label>
           <label className="field">Status<select className="control" value={status} onChange={event => setStatus(event.target.value)}><option value="">All statuses</option>{['Posted', 'Pending', 'Scheduled', 'Canceled', 'Declined'].map(label => <option value={label.toLowerCase()} key={label}>{label}</option>)}</select></label>
-          <button className="button button-outline" disabled={!filtered.length} onClick={() => downloadCsv('harborline-practice-activity.csv', ['Reference','Date','Description','Type','Status','Amount (USD)'], filtered.map(entry => [entry.id, entry.date, entry.description, entry.type, entry.status, (entry.amount / 100).toFixed(2)]))}><Icon name="download" /> Export CSV</button></div>
+          <button className="button button-outline" disabled={!filtered.length} onClick={() => downloadCsv('northpoint-activity.csv', ['Reference','Date','Description','Type','Status','Amount (USD)'], filtered.map(entry => [entry.id, entry.date, entry.description, entry.type, entry.status, (entry.amount / 100).toFixed(2)]))}><Icon name="download" /> Export CSV</button></div>
         <Transactions entries={filtered} label="Account activity" empty={transactions.length ? undefined : 'No activity yet.'} />
       </section> : page === 'cards' ? <CardControls user={user} locked={cardLocked} balance={balance} onLock={locked => updateAccount('card', { locked })} onPurchase={details => updateAccount('card/purchases', details)} /> :
         <BankTool user={user} page={page} ledger={ledger} transactions={transactions} balance={balance} onAdd={(kind, details) => updateAccount('items', { kind, ...details })} onChange={(reference, action) => updateAccount('items/' + encodeURIComponent(reference), { action })} Transactions={Transactions} />}

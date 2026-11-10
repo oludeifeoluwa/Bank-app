@@ -26,7 +26,7 @@ export function AddFunds({ onClose, onAdd }) {
     }
   }
 
-  return <Dialog title="Add test funds" eyebrow="Everyday Checking" onClose={() => { if (!pending.current) onClose(); }}>
+  return <Dialog title="Add funds" eyebrow="Everyday Checking" onClose={() => { if (!pending.current) onClose(); }}>
     <p className="muted">Enter an amount to add to your balance.</p>
     <form className="transfer-form" onSubmit={submit}>
       <label className="field" htmlFor="test-funds-amount">Amount (USD)</label>
@@ -38,7 +38,7 @@ export function AddFunds({ onClose, onAdd }) {
       {error && <p className="error" role="alert">{error}</p>}
       <div className="dialog-actions">
         <button className="button button-outline" type="button" disabled={busy} onClick={onClose}>Cancel</button>
-        <button className="button button-primary" disabled={busy}>{busy ? 'Adding funds…' : 'Add test funds'}</button>
+        <button className="button button-primary" disabled={busy}>{busy ? 'Adding funds…' : 'Add funds'}</button>
       </div>
     </form>
   </Dialog>;

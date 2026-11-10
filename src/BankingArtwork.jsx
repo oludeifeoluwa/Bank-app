@@ -19,7 +19,7 @@ export function DigitalBankingArtwork() {
 
     <g transform="rotate(5 320 155)">
       <rect x="190" y="34" width="263" height="238" rx="13" fill="#102b3d" opacity=".08" transform="translate(8 9)" />
-      <rect x="190" y="34" width="263" height="238" rx="13" fill="#fffdf8" stroke="#c6d4e4" />
+      <rect x="190" y="34" width="263" height="238" rx="13" fill="#ffffff" stroke="#c6d4e4" />
       <text x="214" y="68" className="banking-art-title">Statement</text>
       <text x="214" y="86" className="banking-art-caption">Monthly activity</text>
       <path d="M214 112h214m-214 27h214m-214 27h214" stroke="#dde3ec" />
@@ -44,7 +44,7 @@ export function DigitalBankingArtwork() {
 
     <g>
       <rect x="346" y="238" width="162" height="65" rx="12" fill="#102b3d" opacity=".09" transform="translate(4 6)" />
-      <rect x="346" y="238" width="162" height="65" rx="12" fill="#fffdf8" stroke="#c6d4e4" />
+      <rect x="346" y="238" width="162" height="65" rx="12" fill="#ffffff" stroke="#c6d4e4" />
       <rect x="360" y="253" width="34" height="34" rx="9" fill="#e4eefb" />
       <path d="M367 265h19m-5-4 5 4-5 4m6 6h-19m5-4-5 4 5 4" stroke="#2f6fd0" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       <text x="404" y="267" className="banking-art-tile">Transfers</text>

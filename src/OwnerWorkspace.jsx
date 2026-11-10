@@ -88,7 +88,7 @@ function AccountDetail({ user, id, version, onExpired, onRefresh, onAdjust }) {
   if (!data) return <RequestState error={error} onRetry={onRefresh} loading="Opening account…" />;
   return <div className="workspace-stack">
     <section className="panel workspace-panel owner-account-detail">
-      <div className="workspace-section-heading"><div><h2>{data.username}</h2><p>Everyday Checking · •••• {data.lastFour}</p></div><span className="status-pill status-posted">{data.role === 'owner' ? 'Owner' : data.isDemo ? 'Sample account' : 'Customer'}</span></div>
+      <div className="workspace-section-heading"><div><h2>{data.username}</h2><p>Everyday Checking · •••• {data.lastFour}</p></div><span className="status-pill status-posted">{data.role === 'owner' ? 'Owner' : data.isDemo ? 'Customer' : 'Customer'}</span></div>
       <p className="owner-detail-balance"><span>Available balance</span><strong>{money(data.balance)}</strong></p>
       <div className="owner-detail-actions"><button className="button button-primary" onClick={onAdjust}><Icon name="plus" /> Adjust balance</button><span className="muted">Card {data.cardLocked ? 'locked' : 'unlocked'}</span></div>
     </section>
