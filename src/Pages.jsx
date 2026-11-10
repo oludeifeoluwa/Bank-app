@@ -76,7 +76,7 @@ function Calculator({ kind }) {
     setResult(estimatePayment(kind, values));
   }
   return <section className="calculator" aria-labelledby="calculator-title">
-    <form onSubmit={submit}><h2 id="calculator-title">Try a sample estimate</h2><div className="calculator-fields">
+    <form onSubmit={submit}><h2 id="calculator-title">Try an estimate</h2><div className="calculator-fields">
       {config.fields.map(([label,min,max,step], index) => <label key={label} className="field">{label}
         <input className="control" type="number" min={min} max={max} step={step} required value={values[index]} onChange={event => {
           setValues(values.map((value, i) => i === index ? event.target.value : value));
@@ -98,11 +98,11 @@ function CheckingComparison() {
 }
 
 const FAQs = {
-  checking:[['How do I open the sample account?', 'Select Use sample account on the sign-in form, then sign in.'],['Where can I see transfers?', 'Use the transaction type filter in Activity to find transfers.']],
+  checking:[['How do I open the walkthrough account?', 'Sign in with student@northpoint.example and Northpoint2026!.'],['Where can I see transfers?', 'Use the transaction type filter in Activity to find transfers.']],
   savings:[['How does the savings estimate work?', 'The example subtracts the money already saved and divides the remainder by the number of months.'],['Can I try a transfer to savings?', 'Choose Oak Street Savings as the sample recipient in Pay & transfer.']],
   home:[['What does the payment estimate include?', 'It estimates monthly principal and interest based on the price, down payment, sample rate, and term.']],
   auto:[['Can I compare terms?', 'Change the term in the calculator and recalculate to see how the monthly estimate changes.']],
-  help:[['Do I need to create an account?', 'Select Use sample account on the sign-in form to explore an account with example activity.'],['Where is activity stored?', 'Northpoint saves each account’s activity on this installation.']],
+  help:[['Do I need to create an account?', 'Use the walkthrough sign-in on the home page, or create a profile to start your own practice account.'],['Where is activity stored?', 'Northpoint saves each account’s activity on this installation.']],
   business:[['What can I explore in Business banking?', 'Use the guides for business checking, card payments, credit cards, and recordkeeping.']],
   commercial:[['Where can I learn about cash management?', 'The Treasury management guide covers cash visibility, forecasting, and payment controls.']],
 };

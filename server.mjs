@@ -7,8 +7,9 @@ import { DatabaseSync } from 'node:sqlite';
 import { pbkdf2, randomBytes, randomInt, createHash, timingSafeEqual } from 'node:crypto';
 import { promisify } from 'node:util';
 import { addDemoItem, nextReference, settleDemoItem, signedAmount } from './src/ledger.js';
-import { demoEmail, demoPassword, parseAmount, purchaseMerchants, recipients, startingBalance, transactionsFor } from './src/model.js';
+import { demoEmail, demoPassword, parseAmount, practiceOpeningBalance, purchaseMerchants, recipients, startingBalance, transactionsFor } from './src/model.js';
 import { installOwnerRoutes } from './owner.mjs';
+import { accountHistory } from './src/history.js';
 
 const hashPassword = promisify(pbkdf2);
 const cookieName = 'harborline_session';
@@ -71,6 +72,7 @@ export async function createApp({
   const findUser = db.prepare('SELECT * FROM users WHERE username = ?');
   const userById = db.prepare('SELECT * FROM users WHERE id = ?');
   const addUser = db.prepare('INSERT INTO users (username, salt, password_hash, last_four, balance_cents) VALUES (?, ?, ?, ?, ?)');
+  const updatePassword = db.prepare('UPDATE users SET salt = ?, password_hash = ? WHERE id = ?');
   const addSession = db.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)');
   const getSession = db.prepare('SELECT user_id FROM sessions WHERE token_hash = ? AND expires_at > ?');
   const deleteSession = db.prepare('DELETE FROM sessions WHERE token_hash = ?');
@@ -103,6 +105,23 @@ export async function createApp({
 
   function entriesFor(userId) {
     return getEntries.all(userId).map(row => JSON.parse(row.details));
+  }
+
+  function seedHistory(user) {
+    if (entriesFor(user.id).some(entry => entry.reference.startsWith('HL-HISTORY-CHECKING-'))) return;
+    for (const { id: reference, ...details } of accountHistory(`${user.id}:${user.username}`)) {
+      const entry = { ...details, kind: 'sample', reference };
+      addEntry.run(user.id, reference, JSON.stringify(entry));
+    }
+  }
+
+  function recordOpeningBalance(userId) {
+    const reference = 'HL-OPENING-BALANCE';
+    const entry = {
+      kind: 'sample', reference, description: 'Practice opening balance', type: 'Deposit',
+      amount: practiceOpeningBalance, date: new Date().toISOString(), status: 'posted',
+    };
+    addEntry.run(userId, reference, JSON.stringify(entry));
   }
 
   function accountState(userId, ledger = entriesFor(userId)) {
@@ -145,13 +164,13 @@ export async function createApp({
     return requestId;
   }
 
-  // The public Alex walkthrough remains a separate, preloaded sample account.
-  if (!findUser.get('demo')) {
-    const salt = randomBytes(16);
-    const hash = await derivePassword(demoPassword, salt);
-    atomic(() => {
-      if (findUser.get('demo')) return;
-      const { lastInsertRowid: id } = addUser.run('demo', salt, hash, '4821', startingBalance);
+  // Keep the advertised walkthrough credentials usable across database upgrades.
+  const demoSalt = randomBytes(16);
+  const demoHash = await derivePassword(demoPassword, demoSalt);
+  atomic(() => {
+    let demo = findUser.get('demo');
+    if (!demo) {
+      const { lastInsertRowid: id } = addUser.run('demo', demoSalt, demoHash, '4821', startingBalance);
       const date = new Date();
       const samples = [
         ['Northpoint Payroll', 'Deposit', 325000], ['Maple Market', 'Card purchase', -8682],
@@ -165,8 +184,21 @@ export async function createApp({
         const entry = { kind: 'sample', reference: 'HL-SAMPLE-' + (index + 1), description, type, amount, date: posted.toISOString(), status: 'posted' };
         addEntry.run(id, entry.reference, JSON.stringify(entry));
       }
-    });
-  }
+      demo = findUser.get('demo');
+    }
+    updatePassword.run(demoSalt, demoHash, demo.id);
+  });
+
+  // Give existing empty profiles the practice opening balance without changing funded accounts.
+  atomic(() => {
+    for (const user of db.prepare('SELECT id, username, balance_cents FROM users').all()) {
+      seedHistory(user);
+      if (user.balance_cents === 0 && !entriesFor(user.id).some(entry => entry.reference === 'HL-OPENING-BALANCE')) {
+        recordOpeningBalance(user.id);
+        setBalance.run(practiceOpeningBalance, user.id);
+      }
+    }
+  });
 
   const app = express();
   app.disable('x-powered-by');
@@ -218,7 +250,9 @@ export async function createApp({
 
   function insertProfile({ name, salt, hash }) {
     if (findUser.get(name)) throw problem(409, 'That username is already taken. Choose another.');
-    const { lastInsertRowid: id } = addUser.run(name, salt, hash, String(randomInt(10000)).padStart(4, '0'), 0);
+    const { lastInsertRowid: id } = addUser.run(name, salt, hash, String(randomInt(10000)).padStart(4, '0'), practiceOpeningBalance);
+    seedHistory({ id, username: name });
+    recordOpeningBalance(id);
     return userById.get(id);
   }
 

@@ -8,6 +8,8 @@
 // Nothing here touches the backend ledger — moving real money still flows through
 // Everyday Checking.
 
+import { accountHistory } from './history.js';
+
 function hashString(value) {
   let hash = 2166136261;
   const text = String(value);
@@ -114,14 +116,16 @@ export function buildAccounts(user, checkingBalance, ledger = []) {
     id: 'savings', name: 'Northpoint Savings', type: 'Savings', icon: 'savings',
     lastFour: String(s.int(1000, 9999)), balanceCents: savingsBalance, kind: 'deposit',
     apy: '3.75%', tagline: 'Available balance', sample: true,
-    activity: savingsActivity(savingsSeed ^ 0x9e37, savingsBalance),
+    activity: [...savingsActivity(savingsSeed ^ 0x9e37, savingsBalance), ...accountHistory(user.id ?? user.username, 'savings')]
+      .sort((a, b) => new Date(b.date) - new Date(a.date)),
   };
 
   const credit = {
     id: 'credit', name: 'Northpoint Platinum Card', type: 'Credit card', icon: 'card',
     lastFour: String(c.int(1000, 9999)), balanceCents: creditOwed, limitCents: creditLimit,
     availableCents: creditLimit - creditOwed, kind: 'credit', tagline: 'Current balance', sample: true,
-    activity: creditActivity(creditSeed ^ 0x2545),
+    activity: [...creditActivity(creditSeed ^ 0x2545), ...accountHistory(user.id ?? user.username, 'credit')]
+      .sort((a, b) => new Date(b.date) - new Date(a.date)),
   };
 
   return [checking, savings, credit];

@@ -29,7 +29,7 @@ export function Signup({ onSignIn, onClose }) {
   }
 
   return <Dialog title="Create your account" onClose={() => { if (!inProgress.current) onClose(); }}>
-    <p className="muted">Choose a username and password. Your account starts at $0.00.</p>
+    <p className="muted">Choose a username and password.</p>
     <form className="signup-form" onSubmit={submit}>
       <label className="field" htmlFor="signup-username">Username</label>
       <input className="control" id="signup-username" autoComplete="username" autoCapitalize="none" spellCheck={false} maxLength={24} value={username} onChange={event => setUsername(event.target.value)} required autoFocus />

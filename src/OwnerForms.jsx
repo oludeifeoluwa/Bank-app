@@ -49,7 +49,7 @@ export function AdjustmentDialog({ accounts, initial, onPost, onClose }) {
 
   const close = () => { if (!busy) onClose(); };
   const title = receipt ? 'Adjustment posted' : review ? 'Review balance adjustment' : 'New balance adjustment';
-  return <Dialog title={title} eyebrow={receipt ? 'Practice record' : undefined} onClose={close}>
+  return <Dialog title={title} eyebrow={receipt ? 'Record' : undefined} onClose={close}>
     {receipt ? <>
       <span className="receipt-check"><Icon name="check" /></span>
       <p role="status">{receipt.username} now has <strong>{money(receipt.after)}</strong> available. The adjustment is in the audit log.</p>
@@ -83,7 +83,7 @@ export function CreateAccountDialog({ onCreate, onClose }) {
   const close = () => { if (!busy) onClose(); };
 
   return <Dialog title="Create account" eyebrow="Owner workspace" onClose={close}>
-    <p className="muted">The profile starts at $0.00 and can sign in to its own customer dashboard.</p>
+    <p className="muted">The profile starts with $256,000.00 in simulated funds and can sign in to its own customer dashboard.</p>
     <form className="workspace-form" onSubmit={event => {
       event.preventDefault();
       run(async () => { await onCreate({ username, password }); setPassword(''); });
@@ -150,7 +150,7 @@ export function Payouts({ accounts, onPost }) {
   }
 
   return <div className="workspace-stack">
-    {receipt && <div className="tool-message" role="status"><strong>Batch payout posted.</strong> {money(receipt.total)} credited across {receipt.recipients.length} {receipt.recipients.length === 1 ? 'account' : 'accounts'}. <span className="record-label">Practice record</span> <span className="reference">{receipt.reference}</span></div>}
+    {receipt && <div className="tool-message" role="status"><strong>Batch payout posted.</strong> {money(receipt.total)} credited across {receipt.recipients.length} {receipt.recipients.length === 1 ? 'account' : 'accounts'}. <span className="record-label">Record</span> <span className="reference">{receipt.reference}</span></div>}
     <form className="workspace-columns owner-payout-grid" onSubmit={prepare}>
       <section className="panel workspace-panel">
         <div className="workspace-section-heading"><div><h2>Choose accounts</h2><p>Set a separate amount for each recipient.</p></div></div>

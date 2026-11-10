@@ -3,6 +3,7 @@ import { billers, kindOf, postedDate, sampleChecks, signedAmount, statusOf } fro
 export const demoEmail = 'student@northpoint.example';
 export const demoPassword = 'Northpoint2026!';
 export const startingBalance = 51278900;
+export const practiceOpeningBalance = 25600000;
 export const storageKeys = { remember: 'harborline.rememberDemoEmail' };
 export const recipients = Object.freeze({
   oak: 'Oak Street Savings',

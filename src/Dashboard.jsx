@@ -73,7 +73,6 @@ function AccountTile({ account, active, onSelect }) {
     <span className="account-tile-top">
       <span className="account-tile-icon"><Icon name={account.icon} /></span>
       <span className="account-tile-id"><strong>{account.name}</strong><small>{account.type} ·&nbsp;•••• {account.lastFour}</small></span>
-      {account.sample && <span className="account-tile-tag">Sample</span>}
     </span>
     <span className="account-tile-figure">
       <small>{credit ? 'Current balance' : 'Available balance'}</small>
@@ -109,7 +108,6 @@ function BalanceCard({ account, navigate, onTransfer, onAddFunds }) {
     <div className="dashboard-balance-top">
       <span className="dashboard-account-icon"><Icon name={account.icon} /></span>
       <div><h2>{account.name}</h2><p>{account.type} · ending in {account.lastFour}</p></div>
-      {account.sample && <span className="dashboard-demo-badge">Sample account</span>}
     </div>
     <div className="dashboard-balance-main"><p>{account.tagline}</p><strong>{money(account.balanceCents)}</strong></div>
 
@@ -117,10 +115,10 @@ function BalanceCard({ account, navigate, onTransfer, onAddFunds }) {
       <div className="dashboard-credit-track"><span style={{ width: usedPct + '%' }} /></div>
       <p><span>{money(account.availableCents)} available</span><span>Limit {money(account.limitCents)}</span></p>
     </div>}
-    {account.id === 'savings' && <p className="dashboard-balance-note">Earns {account.apy} APY in this practice environment.</p>}
+    {account.id === 'savings' && <p className="dashboard-balance-note">Earns {account.apy} APY, compounded daily.</p>}
 
     <div className="dashboard-balance-actions">
-      {account.id === 'checking' && <button className="button button-mint" onClick={onAddFunds}>Add test funds</button>}
+      {account.id === 'checking' && <button className="button button-mint" onClick={onTransfer}>Transfer money</button>}
       {account.id === 'savings' && <button className="button button-mint" onClick={onTransfer}>Move money</button>}
       {credit && <button className="button button-mint" onClick={onTransfer}>Make a payment</button>}
       <button className="dashboard-account-link" onClick={() => navigate('details')}>Account details <Icon name="arrow" /></button>
@@ -131,9 +129,15 @@ function BalanceCard({ account, navigate, onTransfer, onAddFunds }) {
 export function Dashboard({ user, balance, ledger, transactions, navigate, onTransfer, onAddFunds }) {
   const accounts = useMemo(() => buildAccounts(user, balance, ledger), [user, balance, ledger]);
   const [selectedId, setSelectedId] = useState('checking');
+  const [showAllHistory, setShowAllHistory] = useState(false);
   const selected = accounts.find(account => account.id === selectedId) ?? accounts[0];
   const total = depositTotal(accounts);
   const view = selected.real ? transactions : selected.activity;
+
+  function selectAccount(id) {
+    setSelectedId(id);
+    setShowAllHistory(false);
+  }
 
   const actions = [
     ['Transfer', 'send', 'Review and send funds', onTransfer],
@@ -143,7 +147,7 @@ export function Dashboard({ user, balance, ledger, transactions, navigate, onTra
   ];
 
   return <div className="dashboard">
-    <AccountsStrip accounts={accounts} selectedId={selected.id} onSelect={setSelectedId} total={total} />
+    <AccountsStrip accounts={accounts} selectedId={selected.id} onSelect={selectAccount} total={total} />
 
     <div className="dashboard-summary">
       <BalanceCard account={selected} navigate={navigate} onTransfer={onTransfer} onAddFunds={onAddFunds} />
@@ -152,9 +156,12 @@ export function Dashboard({ user, balance, ledger, transactions, navigate, onTra
 
     <div className="workspace-columns workspace-overview-bottom">
       <section className="panel dashboard-activity">
-        <div className="panel-heading"><div><h2>Recent activity</h2><p className="muted">{selected.name} · •••• {selected.lastFour}</p></div>
-          {selected.real && <button className="link" onClick={() => navigate('activity')}>View activity <Icon name="arrow" /></button>}</div>
-        <Transactions entries={view.slice(0, 5)} label={'Recent activity for ' + selected.name} empty={selected.real ? 'No activity yet. Add test funds to see your first transaction.' : 'No sample activity for this account.'} />
+        <div className="panel-heading"><div><h2>{showAllHistory ? 'Account history' : 'Recent activity'}</h2><p className="muted">{selected.name} · •••• {selected.lastFour}</p></div>
+          {view.length > 5 && <button className="link" aria-expanded={showAllHistory} onClick={() => setShowAllHistory(value => !value)}>{showAllHistory ? 'Show recent activity' : `View all ${view.length} transactions`} <Icon name="arrow" /></button>}
+          {selected.real && view.length <= 5 && <button className="link" onClick={() => navigate('activity')}>View activity <Icon name="arrow" /></button>}</div>
+        <div className={showAllHistory ? 'dashboard-history-expanded' : undefined}>
+          <Transactions entries={showAllHistory ? view : view.slice(0, 5)} label={(showAllHistory ? 'Account history for ' : 'Recent activity for ') + selected.name} empty="No recent activity to show yet." />
+        </div>
       </section>
       <Upcoming ledger={ledger} navigate={navigate} />
     </div>

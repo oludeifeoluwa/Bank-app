@@ -58,6 +58,7 @@ h1,h2,h3,.brand{font-family:var(--heading-font)}
 .dashboard-action-grid .transaction-icon{flex:none;width:27px;height:27px}
 .dashboard-activity .panel-heading{padding-block:11px}
 .dashboard-activity td:last-child{font-variant-numeric:tabular-nums}
+.dashboard-history-expanded{max-height:540px;overflow:auto}
 @media(max-width:900px){.dashboard-action-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.dashboard-summary{grid-template-columns:1fr}.bank .bank-profile-name{display:none}.bank .bank-main{padding-top:18px}.dashboard-balance{padding:15px}.dashboard-snapshot{padding:11px 13px}}
 @media(max-width:410px){.dashboard-action-grid button>svg:last-child{display:none}.dashboard-action-grid button{padding:6px}.dashboard-action-grid .transaction-icon{width:24px;height:24px}}

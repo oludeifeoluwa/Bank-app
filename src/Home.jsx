@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from './Art.jsx';
 import { demoEmail, demoPassword, readSession, storageKeys, writeSession } from './model.js';
-import { Dialog } from './Shared.jsx';
 import { authenticate } from './auth.js';
 import { Signup } from './Signup.jsx';
 import { Link } from './Navigation.jsx';
@@ -10,7 +9,7 @@ import { DigitalShortcuts, QuickHelp } from './DigitalShortcuts.jsx';
 import personalPhoto from './assets/personal-finances.webp';
 import homeFeaturePhoto from './assets/home-keys.jpg';
 
-function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
+function Login({ onSignIn, openSignup, identityRef }) {
   const [remember, setRemember] = useState(() => readSession(storageKeys.remember) === 'yes');
   const [identifier, setIdentifier] = useState(remember ? demoEmail : '');
   const [password, setPassword] = useState('');
@@ -18,7 +17,6 @@ function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const inProgress = useRef(false);
-  const signInRef = useRef(null);
   const passwordRef = useRef(null);
 
   async function submit(event) {
@@ -43,16 +41,9 @@ function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
     }
   }
 
-  function fillDemo() {
-    setIdentifier(demoEmail);
-    setPassword(demoPassword);
-    setError('');
-    signInRef.current.focus();
-  }
-
   return <section id="demo-sign-in" className="login" aria-labelledby="login-title">
     <h2 id="login-title">Sign in to Northpoint</h2>
-    <p className="muted login-intro">Practice environment. No real money moves.</p>
+    <p className="muted login-intro">Secure online banking, built around you.</p>
     <form onSubmit={submit}>
       <label className="field" htmlFor="sign-in-identity">Username or email</label>
       <input className="control" id="sign-in-identity" ref={identityRef} autoComplete="username" autoCapitalize="none" placeholder="Enter your username" value={identifier} onChange={event => setIdentifier(event.target.value)} spellCheck={false} required />
@@ -62,17 +53,16 @@ function Login({ onSignIn, openCredentials, openSignup, identityRef }) {
       </div>
       <div className="login-options"><label><input type="checkbox" checked={remember} onChange={event => setRemember(event.target.checked)} /> Remember sample email</label><Link className="link" page="signin-help">Sign-in help</Link></div>
       {error && <p className="error" role="alert">{error}</p>}
-      <button className="button button-primary" type="submit" ref={signInRef} disabled={busy}>{busy ? 'Signing in…' : 'Sign in'} <Icon name="arrow" /></button>
-      <button className="button button-outline" type="button" onClick={fillDemo} disabled={busy}>Use sample account</button>
+      <button className="button button-primary" type="submit" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'} <Icon name="arrow" /></button>
     </form>
-    <div className="login-bottom"><button className="link" type="button" onClick={openSignup} disabled={busy}>Create an account <Icon name="chevron" /></button><button className="link" type="button" onClick={openCredentials} disabled={busy}>Sample login details</button></div>
+    <div className="login-bottom"><button className="link" type="button" onClick={openSignup} disabled={busy}>Create an account <Icon name="chevron" /></button><Link className="link" page="signin-help">Forgot username or password?</Link></div>
   </section>;
 }
 
 const trustItems = [
   ['shield', 'Bank-grade 256-bit encryption', 'on every session'],
   ['lock', '24/7 fraud monitoring', 'with instant alerts'],
-  ['check', 'Practice environment', 'funds are simulated'],
+  ['check', 'Trusted by thousands', 'of members nationwide'],
 ];
 
 function TrustBar() {
@@ -112,7 +102,7 @@ function LifestyleFeature() {
       <div className="photo-feature-copy">
         <p className="eyebrow">Home loans</p>
         <h2>From first tour to first key</h2>
-        <p>Explore buying or refinancing, estimate a sample monthly payment, and see what fits your plans — all in one place.</p>
+        <p>Explore buying or refinancing, estimate a monthly payment, and see what fits your plans — all in one place.</p>
         <Link page="home" className="button button-primary">Explore home loans <Icon name="arrow" /></Link>
       </div>
     </article>
@@ -120,7 +110,6 @@ function LifestyleFeature() {
 }
 
 export function Home({ onSignIn }) {
-  const [credentials, setCredentials] = useState(false);
   const [signup, setSignup] = useState(false);
   const identityRef = useRef(null);
 
@@ -130,11 +119,6 @@ export function Home({ onSignIn }) {
       document.getElementById('demo-sign-in')?.scrollIntoView({ block: 'center' });
     }
   }, []);
-
-  function focusLogin() {
-    setCredentials(false);
-    requestAnimationFrame(() => identityRef.current?.focus());
-  }
 
   return <>
     <main id="public-content" className="harbor-home" tabIndex={-1}>
@@ -149,7 +133,7 @@ export function Home({ onSignIn }) {
             <img src={personalPhoto} alt="A woman reviewing paperwork at a café table" width="800" height="1200" fetchPriority="high" decoding="async" />
           </div>
         </div>
-        <Login onSignIn={onSignIn} openCredentials={() => setCredentials(true)} openSignup={() => setSignup(true)} identityRef={identityRef} />
+        <Login onSignIn={onSignIn} openSignup={() => setSignup(true)} identityRef={identityRef} />
       </section>
 
       <TrustBar />
@@ -175,9 +159,5 @@ export function Home({ onSignIn }) {
       <QuickHelp />
     </main>
     {signup && <Signup onSignIn={onSignIn} onClose={() => setSignup(false)} />}
-    {credentials && <Dialog title="Sample login details" onClose={() => setCredentials(false)}>
-      <p><strong>Email:</strong> {demoEmail}</p><p><strong>Password:</strong> {demoPassword}</p>
-      <div className="dialog-actions"><button className="button button-primary" onClick={focusLogin}>Go to sign-in</button></div>
-    </Dialog>}
   </>;
 }

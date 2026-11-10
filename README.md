@@ -4,7 +4,7 @@ Northpoint is a fictional USD banking simulator built with React, Express, and S
 
 ## Overview accounts
 
-The Overview shows a **Your accounts** strip. Everyday Checking is the real, persisted account — its balance and activity are stored in SQLite and drive transfers, deposits, bill pay, and card purchases. Alongside it are two sample display accounts, **Northpoint Savings** and the **Northpoint Platinum Card**, generated deterministically per profile and clearly tagged "Sample." Selecting an account updates the balance card, cash flow chart, and recent activity. The sample accounts are illustrative only and do not move real or persisted funds. See `src/accounts.js`.
+The Overview shows a **Your accounts** strip. Everyday Checking is the persisted account — its balance and activity are stored in SQLite and drive transfers, deposits, bill pay, and card purchases. Alongside it are two sample display accounts, **Northpoint Savings** and the **Northpoint Platinum Card**, generated deterministically per profile. Each account has three years of fictional history; use **View all transactions** to browse it. Selecting an account updates the balance card, cash flow chart, and activity. The sample account balances and activity are illustrative only and do not move real or persisted funds. See `src/accounts.js`.
 
 ## Run locally
 
@@ -28,12 +28,12 @@ To serve the built React app and API together, stop the development backend, the
 
 ## Try two accounts
 
-1. Choose **Create a demo account**. Enter a unique username and a practice password of 12–128 characters.
+1. Choose **Create a demo account**. Enter a unique username and a practice password of 12–128 characters. New practice profiles start with $256,000.00 in simulated checking funds.
 2. Choose **Add test funds**, enter `250.00`, and look for the deposit in recent activity.
-3. Sign out, create a second account, and confirm its balance is $0.00 and its history is empty.
+3. Sign out, create a second account, and confirm its opening balance and activity are separate from the first account. Historical entries are fictional examples.
 4. Restart the backend and sign back into the first account. Its balance and dated transaction will still be there.
 
-The **Fill demo credentials** button opens Alex’s separate, preloaded walkthrough account. Newly created accounts begin at $0.00.
+Alex’s separate, preloaded walkthrough account is `student@northpoint.example` / `Northpoint2026!`. These walkthrough credentials are not displayed on the sign-in page. Newly created accounts receive their own fictional historical activity.
 
 ## Set up the owner dashboard
 
